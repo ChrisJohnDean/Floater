@@ -15,6 +15,8 @@
 		89FEA62E2050E0E700CFA75E /* FloaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA62D2050E0E700CFA75E /* FloaterTests.m */; };
 		89FEA6392050E0E700CFA75E /* FloaterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6382050E0E700CFA75E /* FloaterUITests.m */; };
 		89FEA6482050ECB100CFA75E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6472050ECB100CFA75E /* SearchViewController.swift */; };
+		89FEA64B2050F6A200CFA75E /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA64A2050F6A200CFA75E /* NetworkManager.m */; };
+		89FEA64E20513AF900CFA75E /* FloaterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA64D20513AF900CFA75E /* FloaterObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		89FEA63A2050E0E700CFA75E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89FEA6462050ECB100CFA75E /* Floater-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Floater-Bridging-Header.h"; sourceTree = "<group>"; };
 		89FEA6472050ECB100CFA75E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		89FEA6492050F6A200CFA75E /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		89FEA64A2050F6A200CFA75E /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		89FEA64C20513AF900CFA75E /* FloaterObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloaterObject.h; sourceTree = "<group>"; };
+		89FEA64D20513AF900CFA75E /* FloaterObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloaterObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,10 @@
 				89FEA6232050E0E700CFA75E /* main.m */,
 				89FEA6472050ECB100CFA75E /* SearchViewController.swift */,
 				89FEA6462050ECB100CFA75E /* Floater-Bridging-Header.h */,
+				89FEA6492050F6A200CFA75E /* NetworkManager.h */,
+				89FEA64A2050F6A200CFA75E /* NetworkManager.m */,
+				89FEA64C20513AF900CFA75E /* FloaterObject.h */,
+				89FEA64D20513AF900CFA75E /* FloaterObject.m */,
 			);
 			path = Floater;
 			sourceTree = "<group>";
@@ -266,7 +276,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89FEA64B2050F6A200CFA75E /* NetworkManager.m in Sources */,
 				89FEA6482050ECB100CFA75E /* SearchViewController.swift in Sources */,
+				89FEA64E20513AF900CFA75E /* FloaterObject.m in Sources */,
 				89FEA6242050E0E700CFA75E /* main.m in Sources */,
 				89FEA6162050E0E700CFA75E /* AppDelegate.m in Sources */,
 			);

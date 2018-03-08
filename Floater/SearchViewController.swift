@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
    
+    @IBOutlet weak var blogNameTextField: UITextField!
     @IBOutlet weak var floaterTypePicker: UIPickerView!
     var pickerData = [String]()
     
