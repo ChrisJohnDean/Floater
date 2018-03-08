@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		89FEA6162050E0E700CFA75E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6152050E0E700CFA75E /* AppDelegate.m */; };
-		89FEA6192050E0E700CFA75E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6182050E0E700CFA75E /* ViewController.m */; };
 		89FEA61C2050E0E700CFA75E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89FEA61A2050E0E700CFA75E /* Main.storyboard */; };
 		89FEA61E2050E0E700CFA75E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89FEA61D2050E0E700CFA75E /* Assets.xcassets */; };
 		89FEA6212050E0E700CFA75E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89FEA61F2050E0E700CFA75E /* LaunchScreen.storyboard */; };
 		89FEA6242050E0E700CFA75E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6232050E0E700CFA75E /* main.m */; };
 		89FEA62E2050E0E700CFA75E /* FloaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA62D2050E0E700CFA75E /* FloaterTests.m */; };
 		89FEA6392050E0E700CFA75E /* FloaterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6382050E0E700CFA75E /* FloaterUITests.m */; };
+		89FEA6482050ECB100CFA75E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6472050ECB100CFA75E /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +38,6 @@
 		89FEA6112050E0E700CFA75E /* Floater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Floater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FEA6142050E0E700CFA75E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		89FEA6152050E0E700CFA75E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		89FEA6172050E0E700CFA75E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		89FEA6182050E0E700CFA75E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		89FEA61B2050E0E700CFA75E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89FEA61D2050E0E700CFA75E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89FEA6202050E0E700CFA75E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +49,8 @@
 		89FEA6342050E0E700CFA75E /* FloaterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FloaterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FEA6382050E0E700CFA75E /* FloaterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloaterUITests.m; sourceTree = "<group>"; };
 		89FEA63A2050E0E700CFA75E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89FEA6462050ECB100CFA75E /* Floater-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Floater-Bridging-Header.h"; sourceTree = "<group>"; };
+		89FEA6472050ECB100CFA75E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,13 +103,13 @@
 			children = (
 				89FEA6142050E0E700CFA75E /* AppDelegate.h */,
 				89FEA6152050E0E700CFA75E /* AppDelegate.m */,
-				89FEA6172050E0E700CFA75E /* ViewController.h */,
-				89FEA6182050E0E700CFA75E /* ViewController.m */,
 				89FEA61A2050E0E700CFA75E /* Main.storyboard */,
 				89FEA61D2050E0E700CFA75E /* Assets.xcassets */,
 				89FEA61F2050E0E700CFA75E /* LaunchScreen.storyboard */,
 				89FEA6222050E0E700CFA75E /* Info.plist */,
 				89FEA6232050E0E700CFA75E /* main.m */,
+				89FEA6472050ECB100CFA75E /* SearchViewController.swift */,
+				89FEA6462050ECB100CFA75E /* Floater-Bridging-Header.h */,
 			);
 			path = Floater;
 			sourceTree = "<group>";
@@ -199,6 +199,7 @@
 				TargetAttributes = {
 					89FEA6102050E0E700CFA75E = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					89FEA6282050E0E700CFA75E = {
@@ -265,7 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89FEA6192050E0E700CFA75E /* ViewController.m in Sources */,
+				89FEA6482050ECB100CFA75E /* SearchViewController.swift in Sources */,
 				89FEA6242050E0E700CFA75E /* main.m in Sources */,
 				89FEA6162050E0E700CFA75E /* AppDelegate.m in Sources */,
 			);
@@ -430,12 +431,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95BWZVVTRH;
 				INFOPLIST_FILE = Floater/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cd.GNAR.Floater;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Floater/Floater-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -444,12 +449,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95BWZVVTRH;
 				INFOPLIST_FILE = Floater/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cd.GNAR.Floater;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Floater/Floater-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -457,6 +465,7 @@
 		89FEA6412050E0E700CFA75E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95BWZVVTRH;
@@ -472,6 +481,7 @@
 		89FEA6422050E0E700CFA75E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95BWZVVTRH;
@@ -487,6 +497,7 @@
 		89FEA6442050E0E700CFA75E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95BWZVVTRH;
 				INFOPLIST_FILE = FloaterUITests/Info.plist;
@@ -501,6 +512,7 @@
 		89FEA6452050E0E700CFA75E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95BWZVVTRH;
 				INFOPLIST_FILE = FloaterUITests/Info.plist;
