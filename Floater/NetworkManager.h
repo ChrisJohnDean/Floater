@@ -10,6 +10,8 @@
 
 @interface NetworkManager : NSObject
 
+@property (nonatomic) NSMutableArray *arrayOfFloaters;
+
 - (void)tumblrNetworkRequest:(NSString*)blogName withFloaterType:(NSString*)floaterType;
 
 @end

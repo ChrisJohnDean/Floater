@@ -8,11 +8,18 @@
 
 import UIKit
 
+
 class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
    
+    let networkManager = NetworkManager()
+    
     @IBOutlet weak var blogNameTextField: UITextField!
     @IBOutlet weak var floaterTypePicker: UIPickerView!
+    
+    
     var pickerData = [String]()
+    
+    var pickerChoice = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +29,30 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.floaterTypePicker.delegate = self
         
         // Input options into UIPickerView
-        self.pickerData = ["3D Animated", "Still", "2D Animated", "Gif"]
+        self.pickerData = ["animated", "static", "2D animated", "gif"]
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+   @objc @IBAction func makeApiCall(_ sender: Any) {
+        
+        print(blogNameTextField.text!)
+        print(pickerChoice)
+        networkManager.tumblrNetworkRequest(blogNameTextField.text, withFloaterType: pickerChoice)
+    }
+    
+
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -40,6 +64,10 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.pickerChoice = pickerData[row];
     }
     /*
     // MARK: - Navigation
