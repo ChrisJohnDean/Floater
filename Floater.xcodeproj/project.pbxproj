@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		392CBCA189DCC2E33EF6C1F6 /* Pods_Floater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3844D321886A279C9AA3741E /* Pods_Floater.framework */; };
 		89FEA6162050E0E700CFA75E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6152050E0E700CFA75E /* AppDelegate.m */; };
 		89FEA61C2050E0E700CFA75E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89FEA61A2050E0E700CFA75E /* Main.storyboard */; };
 		89FEA61E2050E0E700CFA75E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89FEA61D2050E0E700CFA75E /* Assets.xcassets */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3442E1B5B277E857EFD688C8 /* Pods-Floater.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Floater.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Floater/Pods-Floater.debug.xcconfig"; sourceTree = "<group>"; };
+		3844D321886A279C9AA3741E /* Pods_Floater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Floater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FEA6112050E0E700CFA75E /* Floater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Floater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FEA6142050E0E700CFA75E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		89FEA6152050E0E700CFA75E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		89FEA64A2050F6A200CFA75E /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		89FEA64C20513AF900CFA75E /* FloaterObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloaterObject.h; sourceTree = "<group>"; };
 		89FEA64D20513AF900CFA75E /* FloaterObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloaterObject.m; sourceTree = "<group>"; };
+		C7C71EEF3A5F4B6BE41514BA /* Pods-Floater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Floater.release.xcconfig"; path = "Pods/Target Support Files/Pods-Floater/Pods-Floater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				392CBCA189DCC2E33EF6C1F6 /* Pods_Floater.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +89,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01B9E170BB3B7BE09F3C55E4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3442E1B5B277E857EFD688C8 /* Pods-Floater.debug.xcconfig */,
+				C7C71EEF3A5F4B6BE41514BA /* Pods-Floater.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		70F25EA905239FF6FE99296E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3844D321886A279C9AA3741E /* Pods_Floater.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		89FEA6082050E0E700CFA75E = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +113,8 @@
 				89FEA62C2050E0E700CFA75E /* FloaterTests */,
 				89FEA6372050E0E700CFA75E /* FloaterUITests */,
 				89FEA6122050E0E700CFA75E /* Products */,
+				01B9E170BB3B7BE09F3C55E4 /* Pods */,
+				70F25EA905239FF6FE99296E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,9 +173,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89FEA63D2050E0E700CFA75E /* Build configuration list for PBXNativeTarget "Floater" */;
 			buildPhases = (
+				E06905E90E2A0E80BF0DC431 /* [CP] Check Pods Manifest.lock */,
 				89FEA60D2050E0E700CFA75E /* Sources */,
 				89FEA60E2050E0E700CFA75E /* Frameworks */,
 				89FEA60F2050E0E700CFA75E /* Resources */,
+				0090E97E838D4716FE674F3C /* [CP] Embed Pods Frameworks */,
+				E26023FC226B9D9BAC289A0F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -270,6 +297,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0090E97E838D4716FE674F3C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Floater/Pods-Floater-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Floater/Pods-Floater-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E06905E90E2A0E80BF0DC431 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Floater-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E26023FC226B9D9BAC289A0F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Floater/Pods-Floater-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		89FEA60D2050E0E700CFA75E /* Sources */ = {
@@ -441,6 +524,7 @@
 		};
 		89FEA63E2050E0E700CFA75E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3442E1B5B277E857EFD688C8 /* Pods-Floater.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -460,6 +544,7 @@
 		};
 		89FEA63F2050E0E700CFA75E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7C71EEF3A5F4B6BE41514BA /* Pods-Floater.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
