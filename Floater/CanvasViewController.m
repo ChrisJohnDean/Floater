@@ -58,7 +58,7 @@
 -(void)setupPaletteView {
     CGFloat floatrOffset = 0;
     for (int i=0; i<4; i++) {
-        UIView *floatrView = [[UIView alloc] init];
+        UIView *floatrView = [[UIView alloc] initWithFrame:CGRectZero];
         floatrView.translatesAutoresizingMaskIntoConstraints = NO;
         floatrView.backgroundColor = [UIColor yellowColor];
         floatrView.layer.cornerRadius = 10.0;
@@ -86,7 +86,7 @@
 
 
 -(void)panGestureRecognized: (UIPanGestureRecognizer*) recognizer {
-//    NSLog(@"Being touched!");
+    //    NSLog(@"Being touched!");
     
     CGPoint floatrLocation = [recognizer locationInView:self.view];
     recognizer.view.center = floatrLocation;
@@ -97,21 +97,37 @@
             if (CGRectContainsPoint(self.canvasView.frame, floatrLocation)) {
                 NSLog(@"Hey, I'm in the canvas!");
                 // Create corresponding floatrView and add it to the canvasView
-                
+                //                CGPoint canvasFloatrLocation = [
+                //                [self.canvasView addSubview:recognizer.view];
                 // Option: Make pallette floatr disappear from main view (means floatr can only be used once)
                 // or instantiate new floatrView at floatr origin (means multiple versions of same floatr can be used)
-                [UIView animateWithDuration:2.0 animations:^{recognizer.view.layer.opacity = 0.0;}];
-                
+                //                [UIView animateWithDuration:2.0 animations:^{recognizer.view.layer.opacity = 0.0;}];
             }
-    
-            break;
-            
-        default:
             break;
     }
 }
 
-
+-(void)setupFloatrInCanvasView {
+    UIView *canvasFloatrView = [[UIView alloc] initWithFrame:CGRectZero];
+    canvasFloatrView.translatesAutoresizingMaskIntoConstraints = NO;
+    canvasFloatrView.backgroundColor = [UIColor yellowColor];
+    canvasFloatrView.layer.cornerRadius = 10.0;
+    canvasFloatrView.userInteractionEnabled = YES;
+    [self.canvasView addSubview:canvasFloatrView];
+    
+    
+    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
+    [canvasFloatrView addGestureRecognizer:panRecognizer];
+    
+    [self.canvasFloatrViewsArray addObject:canvasFloatrView];
+    
+    CGFloat floatrWidth = 55.0;
+    
+    [canvasFloatrView.widthAnchor constraintEqualToConstant:floatrWidth].active = YES;
+    [canvasFloatrView.heightAnchor constraintEqualToConstant:floatrWidth].active = YES;
+//    [canvasFloatrView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:floatrOffset].active = YES;
+//    [floatrView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-40.0].active = YES;
+}
 
 
 
