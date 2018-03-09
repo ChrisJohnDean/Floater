@@ -29,10 +29,16 @@
     [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
 //    self.view.backgroundColor = [UIColor redColor];
     
-//    -(void)animateColorBack {
-//
-//    }
+    [self setupCanvasView];
     
+    self.floatrsArray = @[@1,@2,@3,@4];
+    [self setUpPaletteView];
+    
+    
+}
+
+
+-(void)setupCanvasView {
     UIView *canvasView = [[UIView alloc] init];
     canvasView.translatesAutoresizingMaskIntoConstraints = NO;
     canvasView.backgroundColor = [UIColor greenColor];
@@ -43,13 +49,7 @@
     [canvasView.heightAnchor constraintEqualToAnchor:canvasView.widthAnchor].active = YES;
     [canvasView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor].active = YES;
     [canvasView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20.0].active = YES;
-    
-    self.floatrsArray = @[@1,@2,@3,@4];
-    [self setUpPaletteView];
-    
-    
 }
-
 
 -(void)setUpPaletteView {
     CGFloat floatrOffset = 0;
