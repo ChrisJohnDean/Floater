@@ -7,6 +7,7 @@
 //
 
 #import "Collage Manager.h"
+#import "Canvas.h"
 
 @interface Collage_Manager()
 
@@ -29,4 +30,22 @@
     }
     return self;
 }
+
+-(void)setupCanvas; {
+    Canvas *canvas = [Canvas new];
+}
+
+-(void)setupPalette {
+    
+}
+
+
+
+
+
+-(void)saveImage {
+    //save that image!
+}
+
+
 @end

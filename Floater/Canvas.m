@@ -10,4 +10,19 @@
 
 @implementation Canvas
 
+-(instancetype)initWithName:(NSString *)name andFrame:(CGRect)frame {
+self = [super init];
+if (self) {
+    _canvasName = name;
+    _canvasFrame = &frame;
+    
+}
+return self;
+}
+
+
+
+
+
+
 @end

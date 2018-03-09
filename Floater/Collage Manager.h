@@ -6,7 +6,7 @@
 //  Copyright © 2018 Chris Dean. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+//#import <Foundation/Foundation.h>
 @import UIKit;
 
 @interface Collage_Manager : NSObject
