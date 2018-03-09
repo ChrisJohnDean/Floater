@@ -7,10 +7,15 @@
 //
 
 #import "CanvasViewController.h"
+#import "FloaterObject.h"
 
 @interface CanvasViewController ()
 
 @property (nonatomic, weak) UIView *canvasView;
+
+@property (nonatomic, strong) NSArray<FloaterObject *> *floatrsArray;
+
+-(void)setUpPaletteView;
 
 @end
 
@@ -38,23 +43,33 @@
     [canvasView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor].active = YES;
     [canvasView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20.0].active = YES;
     
+    self.floatrsArray = @[@1,@2,@3,@4];
+    [self setUpPaletteView];
+    
     
 }
 
 
 -(void)setUpPaletteView {
+    CGFloat floatrOffset = 0;
+    for (int i=0; i<4; i++) {
+        UIView *floatrView = [[UIView alloc] init];
+        floatrView.translatesAutoresizingMaskIntoConstraints = NO;
+        floatrView.backgroundColor = [UIColor yellowColor];
+        [self.view addSubview:floatrView];
+        
+        CGFloat floatrWidth = 55.0;
+        CGFloat floatrCount = 5;
+        CGFloat viewWidth = self.view.frame.size.width;
+        CGFloat paletteSpacing = viewWidth / floatrCount;
+        floatrOffset += paletteSpacing;
+        
+        [floatrView.widthAnchor constraintEqualToConstant:floatrWidth].active = YES;
+        [floatrView.heightAnchor constraintEqualToConstant:floatrWidth].active = YES;
+        [floatrView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:floatrOffset].active = YES;
+        [floatrView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-40.0].active = YES;
+    }
     
-    UIView *floatrView = [[UIView alloc] init];
-    floatrView.translatesAutoresizingMaskIntoConstraints = NO;
-    floatrView.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:canvasView];
-    
-    CGFloat
-    
-    [floatrView.widthAnchor constraintEqualToConstant:<#(CGFloat)#>].active = YES;
-    [floatrView.heightAnchor constraintEqualToAnchor:canvasView.widthAnchor].active = YES;
-    [floatrView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor].active = YES;
-    [floatrView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20.0].active = YES;
     
     
 }
