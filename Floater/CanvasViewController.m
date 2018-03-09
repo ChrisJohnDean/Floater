@@ -9,13 +9,14 @@
 #import "CanvasViewController.h"
 #import "FloaterObject.h"
 
-@interface CanvasViewController ()
+@interface CanvasViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) UIView *canvasView;
 
 @property (nonatomic, strong) NSArray<FloaterObject *> *floatrsArray;
+@property (nonatomic, strong) NSMutableArray<UIView *> *floatrViewsArray;
 
--(void)setUpPaletteView;
+-(void)setupPaletteView;
 
 @end
 
@@ -23,20 +24,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor blueColor];
-    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
-//    self.view.backgroundColor = [UIColor redColor];
-    
-    [self setupCanvasView];
-    
+    self.floatrViewsArray = [NSMutableArray new];
     self.floatrsArray = @[@1,@2,@3,@4];
-    [self setUpPaletteView];
     
+    [self setupView];
+    [self setupCanvasView];
+    [self setupPaletteView];
     
 }
 
+
+-(void)setupView {
+    self.view.backgroundColor = [UIColor blueColor];
+    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+}
 
 -(void)setupCanvasView {
     UIView *canvasView = [[UIView alloc] init];
@@ -51,14 +53,19 @@
     [canvasView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20.0].active = YES;
 }
 
--(void)setUpPaletteView {
+-(void)setupPaletteView {
     CGFloat floatrOffset = 0;
     for (int i=0; i<4; i++) {
         UIView *floatrView = [[UIView alloc] init];
         floatrView.translatesAutoresizingMaskIntoConstraints = NO;
         floatrView.backgroundColor = [UIColor yellowColor];
         floatrView.layer.cornerRadius = 10.0;
+        floatrView.userInteractionEnabled = YES;
         [self.view addSubview:floatrView];
+        [self.floatrViewsArray addObject:floatrView];
+        
+        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan)];
+        [floatrView addGestureRecognizer:panRecognizer];
         
         CGFloat floatrWidth = 55.0;
         CGFloat floatrCount = 5;
@@ -71,10 +78,19 @@
         [floatrView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:floatrOffset].active = YES;
         [floatrView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-40.0].active = YES;
     }
+}
+
+
+-(void)panGestureRecognizer: (UIPanGestureRecognizer*) recognizer {
+    NSLog(@"Being touched!");
     
-    
+    CGPoint floatrLocation = [recognizer locationInView:self.view];
     
 }
+
+
+
+
 
 /*
 #pragma mark - Navigation
