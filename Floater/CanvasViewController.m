@@ -36,6 +36,7 @@
     UIView *canvasView = [[UIView alloc] init];
     canvasView.translatesAutoresizingMaskIntoConstraints = NO;
     canvasView.backgroundColor = [UIColor greenColor];
+    canvasView.layer.cornerRadius = 10.0;
     [self.view addSubview:canvasView];
     
     [canvasView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor].active = YES;
@@ -56,6 +57,7 @@
         UIView *floatrView = [[UIView alloc] init];
         floatrView.translatesAutoresizingMaskIntoConstraints = NO;
         floatrView.backgroundColor = [UIColor yellowColor];
+        floatrView.layer.cornerRadius = 10.0;
         [self.view addSubview:floatrView];
         
         CGFloat floatrWidth = 55.0;
