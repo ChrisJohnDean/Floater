@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var floaterRequest: UIButton!
     

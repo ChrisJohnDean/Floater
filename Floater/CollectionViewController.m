@@ -9,6 +9,7 @@
 #import "CollectionViewController.h"
 #import "FloaterObject.h"
 #import "Floater-Swift.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CollectionViewController() <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -22,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     self.arrayOfFloaters = [[NSArray alloc] init];
     
     NetworkManager *networkManager = [[NetworkManager alloc] init];
@@ -30,10 +33,15 @@
     
 }
 
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+
+    self.myCollectionView.backgroundColor = [UIColor lightGrayColor];
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
