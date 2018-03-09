@@ -3,5 +3,6 @@
 //
 
 #import "NetworkManager.h"
+#import "CollectionViewController.h"
 
 

@@ -12,8 +12,6 @@ import UIKit
 class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var floaterRequest: UIButton!
     
-    let networkManager = NetworkManager()
-    
     @IBOutlet weak var blogNameTextField: UITextField!
     @IBOutlet weak var floaterTypePicker: UIPickerView!
     
@@ -56,14 +54,20 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
    @objc @IBAction func makeApiCall(_ sender: Any) {
-    
         if blogNameTextField.text == "" {
             blogNameTextField.placeholder = "You entered nothing!!!"
-        } else {
-            networkManager.tumblrNetworkRequest(blogNameTextField.text, withFloaterType: pickerChoice)
         }
     }
     
+    @objc override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier! == "showCollection" {
+            //let nav = segue.destination as! UINavigationController
+            //let controller = nav.topViewController as! CollectionViewController
+            let controller = segue.destination as! CollectionViewController
+            controller.blogName = blogNameTextField.text
+            controller.floaterType = pickerChoice
+        }
+    }
 
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
