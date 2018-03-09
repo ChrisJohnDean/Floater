@@ -8,6 +8,25 @@
 
 #import "Collage Manager.h"
 
+@interface Collage_Manager()
+
+
+// MARK: Object initializer methods
+-(void)setupCanvas;
+-(void)setupPalette;
+
+
+@end
+
 @implementation Collage_Manager
 
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        <#statements#>
+    }
+    return self;
+}
 @end
