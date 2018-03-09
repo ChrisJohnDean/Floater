@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+@import UIKit;
+#import "FloaterObject.h"
 
 @interface Palette : NSObject
+
+@property (strong, nonatomic) NSArray<FloaterObject *> *floatersArray;
+@property (nonatomic) NSArray *floaterGuides;
+
 
 @end
