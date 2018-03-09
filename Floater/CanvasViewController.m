@@ -20,6 +20,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor blueColor];
+    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+//    self.view.backgroundColor = [UIColor redColor];
+    
+//    -(void)animateColorBack {
+//
+//    }
+    
     UIView *canvasView = [[UIView alloc] init];
     canvasView.translatesAutoresizingMaskIntoConstraints = NO;
     canvasView.backgroundColor = [UIColor greenColor];
@@ -30,7 +38,25 @@
     [canvasView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor].active = YES;
     [canvasView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20.0].active = YES;
     
-    self.view.backgroundColor = [UIColor blueColor];
+    
+}
+
+
+-(void)setUpPaletteView {
+    
+    UIView *floatrView = [[UIView alloc] init];
+    floatrView.translatesAutoresizingMaskIntoConstraints = NO;
+    floatrView.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:canvasView];
+    
+    CGFloat
+    
+    [floatrView.widthAnchor constraintEqualToConstant:<#(CGFloat)#>].active = YES;
+    [floatrView.heightAnchor constraintEqualToAnchor:canvasView.widthAnchor].active = YES;
+    [floatrView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor].active = YES;
+    [floatrView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20.0].active = YES;
+    
+    
 }
 
 /*
