@@ -14,5 +14,6 @@
 
 @property (nonatomic) NSString *blogName;
 @property (nonatomic) NSString *floaterType;
+@property (nonatomic) BOOL isGif;
 
 @end

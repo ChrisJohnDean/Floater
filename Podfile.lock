@@ -1,4 +1,5 @@
 PODS:
+  - Gifu (3.0.0)
   - Realm (3.2.0-beta.3):
     - Realm/Headers (= 3.2.0-beta.3)
   - Realm/Headers (3.2.0-beta.3)
@@ -6,12 +7,14 @@ PODS:
     - Realm (= 3.2.0-beta.3)
 
 DEPENDENCIES:
+  - Gifu
   - RealmSwift (= 3.2.0-beta.3)
 
 SPEC CHECKSUMS:
+  Gifu: 6543ca2056a3d697097c09fe543ef49348ccc892
   Realm: 3fbc3ff1304ee1ff2e667463e4d167a6493bd25b
   RealmSwift: 89d30498adbc7d231617ffdb7c33ee3c2dcc9a40
 
-PODFILE CHECKSUM: 281180e27cae2606b789e573e82d727d8ba15f3d
+PODFILE CHECKSUM: 978f5330617f01f11ef7f101961ebc9a4deb588b
 
 COCOAPODS: 1.4.0

@@ -23,7 +23,7 @@
      self.apiKey = @"A0ZPE7EUBZQbZY9iOBlpOedx09Q0VZwSt7rTzpwlm2ogYRyU8p";
     // Make network request to Tumblr with input from
     NSString *urlString = [NSString stringWithFormat:@"https://api.tumblr.com/v2/blog/%@.tumblr.com/posts/photo?api_key=%@&tag=%@&limit=100", blogName, self.apiKey, floaterType];
-    
+    NSLog(urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:url];
     NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -60,7 +60,7 @@
     for(NSDictionary *dict in postsArray) {
         FloaterObject *floater = [[FloaterObject alloc] initWithDict:dict];
         [self.arrayOfFloaters addObject:floater];
-        NSString *floaterName = [NSString stringWithFormat:@"%@", floater.blogName];
+        //NSString *floaterName = [NSString stringWithFormat:@"%@", floater.blogName];
         //NSLog(floaterName);
     }
 

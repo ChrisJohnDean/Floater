@@ -7,7 +7,7 @@ target 'Floater' do
 
   # Pods for Floater
   pod 'RealmSwift', '3.2.0-beta.3'
-
+  pod 'Gifu'
 
 
 end

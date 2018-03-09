@@ -76,6 +76,14 @@
                 return;
             }
             
+            /*
+             let imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+             imageView.animate(withGIFNamed: "mugen") {
+             print("It's animating!")
+             } 
+             */
+            
+            
             NSData *data = [NSData dataWithContentsOfURL:location];
             UIImage *image = [UIImage imageWithData:data];
             
