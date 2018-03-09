@@ -23,6 +23,7 @@
 		AD27DEF120520E470003734B /* Collage Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD27DEF020520E470003734B /* Collage Manager.m */; };
 		AD27DEF4205211D30003734B /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = AD27DEF3205211D30003734B /* Canvas.m */; };
 		AD27DEF7205215FA0003734B /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = AD27DEF6205215FA0003734B /* Palette.m */; };
+		AD27DEFA205228FB0003734B /* CanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD27DEF9205228FB0003734B /* CanvasViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		AD27DEF3205211D30003734B /* Canvas.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
 		AD27DEF5205215FA0003734B /* Palette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		AD27DEF6205215FA0003734B /* Palette.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
+		AD27DEF8205228FB0003734B /* CanvasViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasViewController.h; sourceTree = "<group>"; };
+		AD27DEF9205228FB0003734B /* CanvasViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasViewController.m; sourceTree = "<group>"; };
 		C7C71EEF3A5F4B6BE41514BA /* Pods-Floater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Floater.release.xcconfig"; path = "Pods/Target Support Files/Pods-Floater/Pods-Floater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +159,8 @@
 				89FEA6472050ECB100CFA75E /* SearchViewController.swift */,
 				AD27DEEF20520E470003734B /* Collage Manager.h */,
 				AD27DEF020520E470003734B /* Collage Manager.m */,
+				AD27DEF8205228FB0003734B /* CanvasViewController.h */,
+				AD27DEF9205228FB0003734B /* CanvasViewController.m */,
 				AD27DEF2205211D30003734B /* Canvas.h */,
 				AD27DEF5205215FA0003734B /* Palette.h */,
 				AD27DEF6205215FA0003734B /* Palette.m */,
@@ -394,6 +399,7 @@
 				89FEA64E20513AF900CFA75E /* FloaterObject.m in Sources */,
 				89FEA6242050E0E700CFA75E /* main.m in Sources */,
 				89FEA6162050E0E700CFA75E /* AppDelegate.m in Sources */,
+				AD27DEFA205228FB0003734B /* CanvasViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,7 +566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 95BWZVVTRH;
+				DEVELOPMENT_TEAM = KRV5282U3Y;
 				INFOPLIST_FILE = Floater/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -581,7 +587,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 95BWZVVTRH;
+				DEVELOPMENT_TEAM = KRV5282U3Y;
 				INFOPLIST_FILE = Floater/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
