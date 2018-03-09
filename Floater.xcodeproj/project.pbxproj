@@ -18,6 +18,7 @@
 		89FEA6482050ECB100CFA75E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6472050ECB100CFA75E /* SearchViewController.swift */; };
 		89FEA64B2050F6A200CFA75E /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA64A2050F6A200CFA75E /* NetworkManager.m */; };
 		89FEA64E20513AF900CFA75E /* FloaterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA64D20513AF900CFA75E /* FloaterObject.m */; };
+		AD27DEF120520E470003734B /* Collage Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD27DEF020520E470003734B /* Collage Manager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		89FEA64A2050F6A200CFA75E /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		89FEA64C20513AF900CFA75E /* FloaterObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloaterObject.h; sourceTree = "<group>"; };
 		89FEA64D20513AF900CFA75E /* FloaterObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloaterObject.m; sourceTree = "<group>"; };
+		AD27DEEF20520E470003734B /* Collage Manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Collage Manager.h"; sourceTree = "<group>"; };
+		AD27DEF020520E470003734B /* Collage Manager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Collage Manager.m"; sourceTree = "<group>"; };
 		C7C71EEF3A5F4B6BE41514BA /* Pods-Floater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Floater.release.xcconfig"; path = "Pods/Target Support Files/Pods-Floater/Pods-Floater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +142,8 @@
 				89FEA6222050E0E700CFA75E /* Info.plist */,
 				89FEA6232050E0E700CFA75E /* main.m */,
 				89FEA6472050ECB100CFA75E /* SearchViewController.swift */,
+				AD27DEEF20520E470003734B /* Collage Manager.h */,
+				AD27DEF020520E470003734B /* Collage Manager.m */,
 				89FEA6462050ECB100CFA75E /* Floater-Bridging-Header.h */,
 				89FEA6492050F6A200CFA75E /* NetworkManager.h */,
 				89FEA64A2050F6A200CFA75E /* NetworkManager.m */,
@@ -361,6 +366,7 @@
 			files = (
 				89FEA64B2050F6A200CFA75E /* NetworkManager.m in Sources */,
 				89FEA6482050ECB100CFA75E /* SearchViewController.swift in Sources */,
+				AD27DEF120520E470003734B /* Collage Manager.m in Sources */,
 				89FEA64E20513AF900CFA75E /* FloaterObject.m in Sources */,
 				89FEA6242050E0E700CFA75E /* main.m in Sources */,
 				89FEA6162050E0E700CFA75E /* AppDelegate.m in Sources */,
