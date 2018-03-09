@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (nonatomic) NSArray *arrayOfFloaters;
 @property (nonatomic) NSCache *floaterCache;
+@property (nonatomic) NSMutableArray *selectedFloaters;
 
 @end
 
@@ -26,10 +27,12 @@
     
     
     self.arrayOfFloaters = [[NSArray alloc] init];
+    self.selectedFloaters = [[NSMutableArray alloc] init];
     
     NetworkManager *networkManager = [[NetworkManager alloc] init];
     networkManager.delegate = self;
     [networkManager tumblrNetworkRequest:self.blogName withFloaterType:self.floaterType];
+
     
 }
 
@@ -71,11 +74,13 @@
     NSString *urlString = smallImageDict[@"url"];
     
     if([self.floaterCache objectForKey:urlString]) {
+        
         UIImage *cachedImage = [self.floaterCache objectForKey:urlString];
         dispatch_async(dispatch_get_main_queue(), ^{
             floaterCell.floaterView.image = cachedImage;
         });
     } else {
+        
         NSURL *url = [NSURL URLWithString:urlString];
         floaterCell.downloadTask = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
@@ -83,14 +88,6 @@
                 NSLog(@"error: %@", error.localizedDescription);
                 return;
             }
-            
-            /*
-             let imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-             imageView.animate(withGIFNamed: "mugen") {
-             print("It's animating!")
-             } 
-             */
-            
             
             NSData *data = [NSData dataWithContentsOfURL:location];
             UIImage *image = [UIImage imageWithData:data];
@@ -108,6 +105,21 @@
     }
     return floaterCell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
+    [self.selectedFloaters addObject:floater];
+
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor orangeColor];
+    for(FloaterObject *floater in self.selectedFloaters) {
+        NSLog(floater.blogName);
+    }
+    //[self.myCollectionView reloadData];
+}
+
+
 
 @end
 

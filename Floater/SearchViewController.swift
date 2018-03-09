@@ -27,7 +27,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.floaterTypePicker.delegate = self
         
         // Input options into UIPickerView
-        self.pickerData = ["animated", "static", "2D animated", "gif"]
+        self.pickerData = ["", "animated", "static", "2D animated", "gif"]
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -47,6 +47,11 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        floaterTypePicker.selectRow(0, inComponent: 0, animated: true)
+    }
+    
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
@@ -60,8 +65,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @objc override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "showCollection" {
-            //let nav = segue.destination as! UINavigationController
-            //let controller = nav.topViewController as! CollectionViewController
+      
             let controller = segue.destination as! CollectionViewController
             controller.blogName = blogNameTextField.text
             controller.floaterType = pickerChoice
