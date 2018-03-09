@@ -10,7 +10,8 @@ import UIKit
 
 
 class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-   
+    @IBOutlet weak var floaterRequest: UIButton!
+    
     let networkManager = NetworkManager()
     
     @IBOutlet weak var blogNameTextField: UITextField!
@@ -33,6 +34,14 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        floaterRequest.layer.cornerRadius = 5
+        floaterRequest.layer.borderWidth = 1
+        floaterRequest.layer.borderColor = UIColor.black.cgColor
+        floaterRequest.layer.shadowColor = UIColor.black.cgColor
+        floaterRequest.layer.shadowOffset = CGSize(width: 5, height: 5)
+        floaterRequest.layer.shadowRadius = 5
+        floaterRequest.layer.shadowOpacity = 1.0
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,10 +55,12 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
    @objc @IBAction func makeApiCall(_ sender: Any) {
-        
-        print(blogNameTextField.text!)
-        print(pickerChoice)
-        networkManager.tumblrNetworkRequest(blogNameTextField.text, withFloaterType: pickerChoice)
+    
+        if blogNameTextField.text == "" {
+            blogNameTextField.placeholder = "You entered nothing!!!"
+        } else {
+            networkManager.tumblrNetworkRequest(blogNameTextField.text, withFloaterType: pickerChoice)
+        }
     }
     
 
