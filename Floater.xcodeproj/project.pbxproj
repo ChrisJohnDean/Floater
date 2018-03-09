@@ -20,6 +20,7 @@
 		89FEA64E20513AF900CFA75E /* FloaterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA64D20513AF900CFA75E /* FloaterObject.m */; };
 		AD27DEF120520E470003734B /* Collage Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD27DEF020520E470003734B /* Collage Manager.m */; };
 		AD27DEF4205211D30003734B /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = AD27DEF3205211D30003734B /* Canvas.m */; };
+		AD27DEF7205215FA0003734B /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = AD27DEF6205215FA0003734B /* Palette.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		AD27DEF020520E470003734B /* Collage Manager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Collage Manager.m"; sourceTree = "<group>"; };
 		AD27DEF2205211D30003734B /* Canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
 		AD27DEF3205211D30003734B /* Canvas.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
+		AD27DEF5205215FA0003734B /* Palette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
+		AD27DEF6205215FA0003734B /* Palette.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
 		C7C71EEF3A5F4B6BE41514BA /* Pods-Floater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Floater.release.xcconfig"; path = "Pods/Target Support Files/Pods-Floater/Pods-Floater.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +151,8 @@
 				AD27DEEF20520E470003734B /* Collage Manager.h */,
 				AD27DEF020520E470003734B /* Collage Manager.m */,
 				AD27DEF2205211D30003734B /* Canvas.h */,
+				AD27DEF5205215FA0003734B /* Palette.h */,
+				AD27DEF6205215FA0003734B /* Palette.m */,
 				AD27DEF3205211D30003734B /* Canvas.m */,
 				89FEA6462050ECB100CFA75E /* Floater-Bridging-Header.h */,
 				89FEA6492050F6A200CFA75E /* NetworkManager.h */,
@@ -372,6 +377,7 @@
 				89FEA64B2050F6A200CFA75E /* NetworkManager.m in Sources */,
 				AD27DEF4205211D30003734B /* Canvas.m in Sources */,
 				89FEA6482050ECB100CFA75E /* SearchViewController.swift in Sources */,
+				AD27DEF7205215FA0003734B /* Palette.m in Sources */,
 				AD27DEF120520E470003734B /* Collage Manager.m in Sources */,
 				89FEA64E20513AF900CFA75E /* FloaterObject.m in Sources */,
 				89FEA6242050E0E700CFA75E /* main.m in Sources */,
