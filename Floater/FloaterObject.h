@@ -13,7 +13,7 @@
 @property (nonatomic) NSNumber *iD;
 @property (nonatomic) NSString *blogName;
 @property (nonatomic) NSMutableArray *tagsArray;
-@property (nonatomic) NSMutableArray * floaterArray;
+@property (nonatomic) NSMutableArray *floaterArray;
 
 - (instancetype)initWithDict:(NSDictionary*)floater;
 

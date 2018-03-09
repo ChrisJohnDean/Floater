@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		392CBCA189DCC2E33EF6C1F6 /* Pods_Floater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3844D321886A279C9AA3741E /* Pods_Floater.framework */; };
 		89254BCB2052282900E3E856 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89254BCA2052282900E3E856 /* CollectionViewController.m */; };
+		89254BCD20523A9600E3E856 /* FloaterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89254BCC20523A9600E3E856 /* FloaterCollectionViewCell.swift */; };
 		89FEA6162050E0E700CFA75E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6152050E0E700CFA75E /* AppDelegate.m */; };
 		89FEA61C2050E0E700CFA75E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89FEA61A2050E0E700CFA75E /* Main.storyboard */; };
 		89FEA61E2050E0E700CFA75E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89FEA61D2050E0E700CFA75E /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		3844D321886A279C9AA3741E /* Pods_Floater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Floater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89254BC92052282900E3E856 /* CollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		89254BCA2052282900E3E856 /* CollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		89254BCC20523A9600E3E856 /* FloaterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloaterCollectionViewCell.swift; sourceTree = "<group>"; };
 		89FEA6112050E0E700CFA75E /* Floater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Floater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FEA6142050E0E700CFA75E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		89FEA6152050E0E700CFA75E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				89FEA64D20513AF900CFA75E /* FloaterObject.m */,
 				89254BC92052282900E3E856 /* CollectionViewController.h */,
 				89254BCA2052282900E3E856 /* CollectionViewController.m */,
+				89254BCC20523A9600E3E856 /* FloaterCollectionViewCell.swift */,
 			);
 			path = Floater;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			files = (
 				89FEA64B2050F6A200CFA75E /* NetworkManager.m in Sources */,
 				89254BCB2052282900E3E856 /* CollectionViewController.m in Sources */,
+				89254BCD20523A9600E3E856 /* FloaterCollectionViewCell.swift in Sources */,
 				AD27DEF4205211D30003734B /* Canvas.m in Sources */,
 				89FEA6482050ECB100CFA75E /* SearchViewController.swift in Sources */,
 				AD27DEF7205215FA0003734B /* Palette.m in Sources */,
