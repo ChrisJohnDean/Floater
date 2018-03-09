@@ -61,7 +61,7 @@
         FloaterObject *floater = [[FloaterObject alloc] initWithDict:dict];
         [self.arrayOfFloaters addObject:floater];
         NSString *floaterName = [NSString stringWithFormat:@"%@", floater.blogName];
-        NSLog(floaterName);
+        NSLog(@"%@", floaterName);
     }
 
     // Pass array of FloaterObjects to self.delegate

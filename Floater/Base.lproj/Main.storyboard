@@ -125,10 +125,10 @@
             </objects>
             <point key="canvasLocation" x="1285.5999999999999" y="151.57421289355324"/>
         </scene>
-        <!--View Controller-->
+        <!--Canvas View Controller-->
         <scene sceneID="hYI-IW-8l6">
             <objects>
-                <viewController id="XES-lU-OaM" sceneMemberID="viewController">
+                <viewController id="XES-lU-OaM" customClass="CanvasViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hNu-r8-t16">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXE-8O-n2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2054" y="151"/>
+            <point key="canvasLocation" x="2053.5999999999999" y="150.67466266866569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6ZM-3L-d0c">
