@@ -8,8 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class NetworkManager;
+@protocol floaterDelegate <NSObject>
+
+- (void)passFloaterArray:(NSMutableArray*)arrayOfFloaters;
+
+@end
+
+
 @interface NetworkManager : NSObject
 
+@property (nonatomic, weak) id<floaterDelegate> delegate;
 @property (nonatomic) NSMutableArray *arrayOfFloaters;
 
 - (void)tumblrNetworkRequest:(NSString*)blogName withFloaterType:(NSString*)floaterType;

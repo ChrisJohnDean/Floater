@@ -35,6 +35,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
+        // UI for button
         floaterRequest.layer.cornerRadius = 5
         floaterRequest.layer.borderWidth = 1
         floaterRequest.layer.borderColor = UIColor.black.cgColor
@@ -49,7 +50,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Dispose of any resources that can be recreated.
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }

@@ -53,9 +53,10 @@
     NSDictionary *responsDict = jsonObject[@"response"];
     NSArray *postsArray = responsDict[@"posts"];
     
-    //Initialize array that will contain Floater objects
+    // Initialize array that will contain Floater objects
     self.arrayOfFloaters = [[NSMutableArray alloc] init];
     
+    // Instanctiate a FloaterObject for every photo post from retrieved tumblr JSON dictionaries
     for(NSDictionary *dict in postsArray) {
         FloaterObject *floater = [[FloaterObject alloc] initWithDict:dict];
         [self.arrayOfFloaters addObject:floater];
@@ -63,6 +64,8 @@
         NSLog(floaterName);
     }
 
+    // Pass array of FloaterObjects to self.delegate
+    [self.delegate passFloaterArray:self.arrayOfFloaters];
 }
 
 @end
