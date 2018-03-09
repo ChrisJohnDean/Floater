@@ -62,10 +62,12 @@
         floatrView.layer.cornerRadius = 10.0;
         floatrView.userInteractionEnabled = YES;
         [self.view addSubview:floatrView];
-        [self.floatrViewsArray addObject:floatrView];
         
-        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan)];
+        
+        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
         [floatrView addGestureRecognizer:panRecognizer];
+        
+        [self.floatrViewsArray addObject:floatrView];
         
         CGFloat floatrWidth = 55.0;
         CGFloat floatrCount = 5;
@@ -81,11 +83,21 @@
 }
 
 
--(void)panGestureRecognizer: (UIPanGestureRecognizer*) recognizer {
+-(void)panGestureRecognized: (UIPanGestureRecognizer*) recognizer {
     NSLog(@"Being touched!");
     
     CGPoint floatrLocation = [recognizer locationInView:self.view];
+    recognizer.view.center = floatrLocation;
     
+//    switch (recognizer.state) {
+//        case UIGestureRecognizerStateEnded:
+//            <#statements#>
+    
+//            break;
+//            
+//        default:
+//            break;
+//    }
 }
 
 
