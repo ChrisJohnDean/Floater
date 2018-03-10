@@ -38,8 +38,12 @@
 
 
 -(void)setupView {
-    self.view.backgroundColor = [UIColor blueColor];
-    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+    // Animated background color
+//    self.view.backgroundColor = [UIColor blueColor];
+//    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+    
+    self.view.backgroundColor = [UIColor clearColor];
+    
 }
 
 -(void)setupCanvasView {
@@ -97,8 +101,8 @@
             if (CGRectContainsPoint(self.canvasView.frame, floatrLocation)) {
                 NSLog(@"Hey, I'm in the canvas!");
                 // Create corresponding floatrView and add it to the canvasView
-                //                CGPoint canvasFloatrLocation = [
-                //                [self.canvasView addSubview:recognizer.view];
+                [self setupFloatrInCanvasViewWithLocation:floatrLocation];
+                [recognizer.view removeFromSuperview];
                 // Option: Make pallette floatr disappear from main view (means floatr can only be used once)
                 // or instantiate new floatrView at floatr origin (means multiple versions of same floatr can be used)
                 //                [UIView animateWithDuration:2.0 animations:^{recognizer.view.layer.opacity = 0.0;}];
@@ -107,12 +111,15 @@
     }
 }
 
--(void)setupFloatrInCanvasView {
-    UIView *canvasFloatrView = [[UIView alloc] initWithFrame:CGRectZero];
-    canvasFloatrView.translatesAutoresizingMaskIntoConstraints = NO;
-    canvasFloatrView.backgroundColor = [UIColor yellowColor];
+-(void)setupFloatrInCanvasViewWithLocation: (CGPoint) location {
+    CGFloat floatrWidth = 55.0;
+    
+    UIView *canvasFloatrView = [[UIView alloc] initWithFrame:CGRectMake(location.x, location.y, floatrWidth, floatrWidth)];
+    canvasFloatrView.translatesAutoresizingMaskIntoConstraints = YES;
+    canvasFloatrView.backgroundColor = [UIColor cyanColor];
     canvasFloatrView.layer.cornerRadius = 10.0;
     canvasFloatrView.userInteractionEnabled = YES;
+    
     [self.canvasView addSubview:canvasFloatrView];
     
     
@@ -121,10 +128,11 @@
     
     [self.canvasFloatrViewsArray addObject:canvasFloatrView];
     
-    CGFloat floatrWidth = 55.0;
     
-    [canvasFloatrView.widthAnchor constraintEqualToConstant:floatrWidth].active = YES;
-    [canvasFloatrView.heightAnchor constraintEqualToConstant:floatrWidth].active = YES;
+    
+    
+//    [canvasFloatrView.widthAnchor constraintEqualToConstant:floatrWidth].active = YES;
+//    [canvasFloatrView.heightAnchor constraintEqualToConstant:floatrWidth].active = YES;
 //    [canvasFloatrView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:floatrOffset].active = YES;
 //    [floatrView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-40.0].active = YES;
 }
