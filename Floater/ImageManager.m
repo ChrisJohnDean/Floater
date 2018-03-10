@@ -10,7 +10,7 @@
 
 @implementation ImageManager
 
-- (void)imageDownload:(FloaterObject*)floater {
+- (void)imageDownload:(FloaterObject*)floater andCompletionHandler:(void(^)(UIImage *image))completionHandler {
     
     NSArray *floaterArray = floater.floaterArray;
     NSDictionary *originalImageDict = floaterArray.firstObject;
@@ -27,6 +27,7 @@
         NSData *data = [NSData dataWithContentsOfURL:location];
         UIImage *image = [UIImage imageWithData:data];
         
+        completionHandler(image);
         
     }];
    [downloadTask resume];

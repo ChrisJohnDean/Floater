@@ -37,7 +37,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         floaterRequest.layer.borderWidth = 1
         floaterRequest.layer.borderColor = UIColor.black.cgColor
         floaterRequest.layer.shadowColor = UIColor.black.cgColor
-        floaterRequest.layer.shadowOffset = CGSize(width: 5, height: 5)
+        floaterRequest.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         floaterRequest.layer.shadowRadius = 5
         floaterRequest.layer.shadowOpacity = 1.0
     }

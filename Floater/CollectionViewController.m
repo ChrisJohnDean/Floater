@@ -10,6 +10,7 @@
 #import "FloaterObject.h"
 #import "Floater-Swift.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ImageManager.h"
 
 @interface CollectionViewController() <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -18,6 +19,8 @@
 @property (nonatomic) NSCache *floaterCache;
 @property (nonatomic) NSMutableArray *selectedRows;
 @property (nonatomic) NSMutableArray *selectedFloaters;
+@property (nonatomic) NSMutableArray *selectedImages;
+@property (nonatomic) ImageManager *imageManager;
 
 @end
 
@@ -26,10 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.imageManager = [[ImageManager alloc] init];
     
     self.arrayOfFloaters = [[NSArray alloc] init];
     self.selectedFloaters = [[NSMutableArray alloc] init];
     self.selectedRows = [[NSMutableArray alloc] init];
+    self.selectedImages = [[NSMutableArray alloc] init];
     
     NetworkManager *networkManager = [[NetworkManager alloc] init];
     networkManager.delegate = self;
@@ -123,6 +128,10 @@
         [self.selectedRows addObject:rowString];
         FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
         
+        [self.imageManager imageDownload:floater andCompletionHandler:^(UIImage *image) {
+            [self.selectedImages addObject:image];
+        }];
+        
         [self.selectedFloaters addObject:floater];
         cell.layer.borderWidth = 3;
         cell.layer.borderColor = [[UIColor cyanColor] CGColor];
@@ -133,7 +142,7 @@
         NSLog(@"%@", floater.iD);
     }
     NSLog(@"%lu", (unsigned long)self.selectedFloaters.count);
-    
+    NSLog(@"%lu", (unsigned long)self.selectedImages.count);
 }
 
 

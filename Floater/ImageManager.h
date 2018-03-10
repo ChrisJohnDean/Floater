@@ -12,8 +12,6 @@
 
 @interface ImageManager : NSObject
 
-
-
-- (void)imageDownload:(FloaterObject*)floater;
+- (void)imageDownload:(FloaterObject*)floater andCompletionHandler:(void(^)(UIImage *image))completionHandler;
 
 @end
