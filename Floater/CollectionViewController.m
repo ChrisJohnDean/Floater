@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (nonatomic) NSArray *arrayOfFloaters;
 @property (nonatomic) NSCache *floaterCache;
+@property (nonatomic) NSMutableArray *selectedRows;
 @property (nonatomic) NSMutableArray *selectedFloaters;
 
 @end
@@ -28,6 +29,7 @@
     
     self.arrayOfFloaters = [[NSArray alloc] init];
     self.selectedFloaters = [[NSMutableArray alloc] init];
+    self.selectedRows = [[NSMutableArray alloc] init];
     
     NetworkManager *networkManager = [[NetworkManager alloc] init];
     networkManager.delegate = self;
@@ -108,17 +110,30 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
-    [self.selectedFloaters addObject:floater];
-
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor orangeColor];
-    for(FloaterObject *floater in self.selectedFloaters) {
-        NSLog(floater.blogName);
+    NSString *rowString = [NSString stringWithFormat:@"%ld", indexPath.row];
+    
+    
+    if([self.selectedRows containsObject:rowString]) {
+        cell.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        NSInteger index = [self.selectedRows indexOfObject:rowString];
+        [self.selectedFloaters removeObjectAtIndex:index];
+        [self.selectedRows removeObjectAtIndex:index];
+    } else {
+        [self.selectedRows addObject:rowString];
+        FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
+        [self.selectedFloaters addObject:floater];
+        cell.layer.borderWidth = 3;
+        cell.layer.borderColor = [[UIColor cyanColor] CGColor];
+        cell.layer.cornerRadius = 6;
     }
-    //[self.myCollectionView reloadData];
+        
+    for(FloaterObject *floater in self.selectedFloaters) {
+        NSLog(@"%@", floater.iD);
+    }
+    NSLog(@"%lu", (unsigned long)self.selectedFloaters.count);
+    
 }
-
 
 
 @end
