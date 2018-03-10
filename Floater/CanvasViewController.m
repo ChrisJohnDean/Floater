@@ -31,6 +31,7 @@
     self.canvasFloatrViewsArray = [NSMutableArray new];
     self.floatrsArray = @[@1,@2,@3,@4];
     
+    
     [self setupView];
     [self setupCanvasView];
     [self setupPaletteView];
@@ -71,30 +72,34 @@
 
 -(void)setupPaletteView {
     CGFloat floatrOffset = 0;
-    for (int i=0; i<4; i++) {
-        UIView *floatrView = [[UIView alloc] initWithFrame:CGRectZero];
+    for (int i=0; i<self.selectedImages.count; i++) {
+//        UIView *floatrView = [[UIView alloc] initWithFrame:CGRectZero];
+        
+        
+        UIImage *floatrImage = self.selectedImages[i];
+        UIImageView *floatrView = [[UIImageView alloc]initWithImage:floatrImage];
         floatrView.translatesAutoresizingMaskIntoConstraints = NO;
-        floatrView.backgroundColor = [UIColor yellowColor];
+        floatrView.backgroundColor = [UIColor clearColor];
         floatrView.layer.cornerRadius = 10.0;
         floatrView.userInteractionEnabled = YES;
+//        floatrView.
         [self.view addSubview:floatrView];
-        
         
         UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
         [floatrView addGestureRecognizer:panRecognizer];
         
         [self.palletteFloatrViewsArray addObject:floatrView];
         
-        CGFloat floatrWidth = 55.0;
-        CGFloat floatrCount = 5;
+        CGFloat floatrWidth = 75.0;
+        CGFloat floatrCount = self.selectedImages.count;
         CGFloat viewWidth = self.view.frame.size.width;
-        CGFloat paletteSpacing = viewWidth / floatrCount;
+        CGFloat paletteSpacing = viewWidth / (floatrCount+1);
         floatrOffset += paletteSpacing;
         
         [floatrView.widthAnchor constraintEqualToConstant:floatrWidth].active = YES;
         [floatrView.heightAnchor constraintEqualToConstant:floatrWidth].active = YES;
         [floatrView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:floatrOffset].active = YES;
-        [floatrView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-40.0].active = YES;
+        [floatrView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-60.0].active = YES;
     }
 }
 
@@ -117,6 +122,8 @@
                 // or instantiate new floatrView at floatr origin (means multiple versions of same floatr can be used)
                 //                [UIView animateWithDuration:2.0 animations:^{recognizer.view.layer.opacity = 0.0;}];
             }
+            break;
+        default:
             break;
     }
 }

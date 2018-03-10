@@ -131,6 +131,7 @@
         NSInteger index = [self.selectedRows indexOfObject:rowString];
         [self.selectedFloaters removeObjectAtIndex:index];
         [self.selectedRows removeObjectAtIndex:index];
+        [self.selectedImages removeObjectAtIndex:index];
     } else {
         [self.selectedRows addObject:rowString];
         FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
