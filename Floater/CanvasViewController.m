@@ -11,7 +11,7 @@
 
 @interface CanvasViewController () <UIGestureRecognizerDelegate>
 
-
+@property (nonatomic) NSMutableArray *selectedImages;
 @property (nonatomic, strong) UIView *canvasView;
 
 @property (nonatomic, strong) NSArray<FloaterObject *> *floatrsArray;
@@ -145,7 +145,14 @@
     [captureView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil);
+    NSData *pngData = UIImagePNGRepresentation(screenshot);
+    UIImage *pngImage = [UIImage imageWithData:pngData];
+//    UIImageWriteToSavedPhotosAlbum(pngImage, nil, nil, nil);
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[pngImage] applicationActivities:nil];
+    activityViewController.popoverPresentationController.sourceView = self.view;
+    [self presentViewController:activityViewController animated:true completion:nil];
+    
+    
 }
 
 
