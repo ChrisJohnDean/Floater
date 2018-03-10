@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.palletteFloatrViewsArray = [NSMutableArray new];
     self.canvasFloatrViewsArray = [NSMutableArray new];
     self.floatrsArray = @[@1,@2,@3,@4];

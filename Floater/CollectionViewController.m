@@ -9,12 +9,15 @@
 #import "CollectionViewController.h"
 #import "FloaterObject.h"
 #import "Floater-Swift.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CollectionViewController() <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (nonatomic) NSArray *arrayOfFloaters;
 @property (nonatomic) NSCache *floaterCache;
+@property (nonatomic) NSMutableArray *selectedRows;
+@property (nonatomic) NSMutableArray *selectedFloaters;
 
 @end
 
@@ -22,18 +25,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     self.arrayOfFloaters = [[NSArray alloc] init];
+    self.selectedFloaters = [[NSMutableArray alloc] init];
+    self.selectedRows = [[NSMutableArray alloc] init];
     
     NetworkManager *networkManager = [[NetworkManager alloc] init];
     networkManager.delegate = self;
     [networkManager tumblrNetworkRequest:self.blogName withFloaterType:self.floaterType];
+
     
 }
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+
+    self.myCollectionView.backgroundColor = [UIColor lightGrayColor];
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -63,11 +76,13 @@
     NSString *urlString = smallImageDict[@"url"];
     
     if([self.floaterCache objectForKey:urlString]) {
+        
         UIImage *cachedImage = [self.floaterCache objectForKey:urlString];
         dispatch_async(dispatch_get_main_queue(), ^{
             floaterCell.floaterView.image = cachedImage;
         });
     } else {
+        
         NSURL *url = [NSURL URLWithString:urlString];
         floaterCell.downloadTask = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
@@ -75,14 +90,6 @@
                 NSLog(@"error: %@", error.localizedDescription);
                 return;
             }
-            
-            /*
-             let imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-             imageView.animate(withGIFNamed: "mugen") {
-             print("It's animating!")
-             } 
-             */
-            
             
             NSData *data = [NSData dataWithContentsOfURL:location];
             UIImage *image = [UIImage imageWithData:data];
@@ -100,6 +107,35 @@
     }
     return floaterCell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    NSString *rowString = [NSString stringWithFormat:@"%ld", indexPath.row];
+    
+    
+    if([self.selectedRows containsObject:rowString]) {
+        cell.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        NSInteger index = [self.selectedRows indexOfObject:rowString];
+        [self.selectedFloaters removeObjectAtIndex:index];
+        [self.selectedRows removeObjectAtIndex:index];
+    } else {
+        [self.selectedRows addObject:rowString];
+        FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
+        
+        [self.selectedFloaters addObject:floater];
+        cell.layer.borderWidth = 3;
+        cell.layer.borderColor = [[UIColor cyanColor] CGColor];
+        cell.layer.cornerRadius = 6;
+    }
+        
+    for(FloaterObject *floater in self.selectedFloaters) {
+        NSLog(@"%@", floater.iD);
+    }
+    NSLog(@"%lu", (unsigned long)self.selectedFloaters.count);
+    
+}
+
 
 @end
 

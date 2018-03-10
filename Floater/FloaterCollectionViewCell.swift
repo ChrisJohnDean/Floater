@@ -17,5 +17,6 @@ class FloaterCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         downloadTask.cancel()
         floaterView.image = nil
+       
     }
 }
