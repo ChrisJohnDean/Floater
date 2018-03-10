@@ -32,7 +32,7 @@
 //    -(void)animateColorBack {
 //
 //    }
-    
+
     UIView *canvasView = [[UIView alloc] init];
     canvasView.translatesAutoresizingMaskIntoConstraints = NO;
     canvasView.backgroundColor = [UIColor greenColor];

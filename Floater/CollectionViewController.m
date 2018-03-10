@@ -122,6 +122,7 @@
     } else {
         [self.selectedRows addObject:rowString];
         FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
+        
         [self.selectedFloaters addObject:floater];
         cell.layer.borderWidth = 3;
         cell.layer.borderColor = [[UIColor cyanColor] CGColor];
