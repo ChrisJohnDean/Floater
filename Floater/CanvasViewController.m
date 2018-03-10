@@ -47,10 +47,10 @@
 
 -(void)setupView {
     // Animated background color
-//    self.view.backgroundColor = [UIColor blueColor];
-//    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+    self.view.backgroundColor = [UIColor blueColor];
+    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
     
-    self.view.backgroundColor = [UIColor clearColor];
+//    self.view.backgroundColor = [UIColor clearColor];
     
 }
 
@@ -59,6 +59,8 @@
     self.canvasView.translatesAutoresizingMaskIntoConstraints = NO;
     self.canvasView.backgroundColor = [UIColor clearColor];
     self.canvasView.layer.cornerRadius = 10.0;
+    self.canvasView.layer.borderWidth = 5.0;
+    self.canvasView.layer.borderColor = [[UIColor cyanColor] CGColor];
     [self.view addSubview:self.canvasView];
     
     [self.canvasView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor].active = YES;
