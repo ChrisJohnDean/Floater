@@ -11,6 +11,7 @@
 #import "Floater-Swift.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ImageManager.h"
+#import "CanvasViewController.h"
 
 @interface CollectionViewController() <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -46,8 +47,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-
     self.myCollectionView.backgroundColor = [UIColor lightGrayColor];
     
 }
@@ -64,7 +63,15 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.myCollectionView reloadData];
     });
-    
+
+}
+
+// Pass array of selected images to canvasVC
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([[segue identifier] isEqualToString:@"showCanvas"]) {
+        CanvasViewController *destination = (CanvasViewController*)[segue destinationViewController];
+        destination.selectedImages = self.selectedImages;
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

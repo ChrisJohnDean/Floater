@@ -35,13 +35,14 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // UI for button
         floaterRequest.layer.cornerRadius = 5
         floaterRequest.layer.borderWidth = 1
-        floaterRequest.layer.borderColor = UIColor.black.cgColor
+        floaterRequest.layer.borderColor = UIColor.lightGray.cgColor
         floaterRequest.layer.shadowColor = UIColor.black.cgColor
         floaterRequest.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         floaterRequest.layer.shadowRadius = 5
         floaterRequest.layer.shadowOpacity = 1.0
     }
-    
+    //self.view.backgroundColor = [UIColor blueColor];
+    //    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,6 +59,19 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
    @objc @IBAction func makeApiCall(_ sender: Any) {
+    
+    self.floaterRequest.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+    
+    UIView.animate(withDuration: 2.0,
+                   delay: 0,
+                   usingSpringWithDamping: CGFloat(0.20),
+                   initialSpringVelocity: CGFloat(6.0),
+                   options: UIViewAnimationOptions.allowUserInteraction,
+                   animations: {
+                    self.floaterRequest.transform = CGAffineTransform.identity
+    },
+                   completion: { Void in()  }
+    )
         if blogNameTextField.text == "" {
             blogNameTextField.placeholder = "You entered nothing!!!"
         }

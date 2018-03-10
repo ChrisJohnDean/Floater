@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @import Photos;
+#import "CollectionViewController.h"
 
 @interface CanvasViewController : UIViewController
+
+@property (nonatomic) NSMutableArray *selectedImages;
 
 @end
