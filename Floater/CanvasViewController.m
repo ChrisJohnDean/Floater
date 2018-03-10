@@ -139,6 +139,7 @@
 
 -(void)saveCanvasImage {
     NSLog(@"I'm trying to save this image!");
+    [self requestAuthorizationWithRedirectionToSettings];
     UIView* captureView = self.canvasView;
     UIGraphicsBeginImageContextWithOptions(captureView.bounds.size, YES , 0.0f);
     [captureView.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -148,38 +149,40 @@
 }
 
 
-//- (void)requestAuthorizationWithRedirectionToSettings {
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
-//        if (status == PHAuthorizationStatusAuthorized)
-//        {
-//            //We have permission. Do whatever is needed
-//        }
-//        else
-//        {
-//            //No permission. Trying to normally request it
-//            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-//                if (status != PHAuthorizationStatusAuthorized)
-//                {
-//                    //User don't give us permission. Showing alert with redirection to settings
-//                    //Getting description string from info.plist file
-//                    NSString *accessDescription = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSPhotoLibraryUsageDescription"];
-//                    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:accessDescription message:@"To give permissions tap on 'Change Settings' button" preferredStyle:UIAlertControllerStyleAlert];
-//                    
-//                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-//                    [alertController addAction:cancelAction];
-//                    
-//                    UIAlertAction *settingsAction = [UIAlertAction actionWithTitle:@"Change Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-//                    }];
-//                    [alertController addAction:settingsAction];
-//                    
-//                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
-//                }
-//            }];
-//        }
-//    });
-//}
+- (void)requestAuthorizationWithRedirectionToSettings {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        if (status == PHAuthorizationStatusAuthorized)
+        {
+            //We have permission. Do whatever is needed
+        }
+        else
+        {
+            //No permission. Trying to normally request it
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                if (status != PHAuthorizationStatusAuthorized)
+                {
+                    //User don't give us permission. Showing alert with redirection to settings
+                    //Getting description string from info.plist file
+                    NSString *accessDescription = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSPhotoLibraryUsageDescription"];
+                    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:accessDescription message:@"To give permissions tap on 'Change Settings' button" preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                    [alertController addAction:cancelAction];
+                    
+                    UIAlertAction *settingsAction = [UIAlertAction actionWithTitle:@"Change Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [[UIApplication sharedApplication] openURL:UIApplicationOpenSettingsURLString options:nil completionHandler:nil];
+                    }];
+//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//                }];
+                    [alertController addAction:settingsAction];
+                    
+                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+                }
+            }];
+        }
+    });
+}
 
 /*
 #pragma mark - Navigation

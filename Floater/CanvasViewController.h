@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Photos;
 
 @interface CanvasViewController : UIViewController
 
