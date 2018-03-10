@@ -133,11 +133,12 @@
 }
 
 -(void)setupFloatrInCanvasViewWithLocation: (CGPoint) location andImage: (UIImage *) image {
-    CGFloat floatrWidth = 75.0;
+    CGFloat floatrInitialWidth = 75.0;
+    CGFloat floatrFinalWidth = 100.0;
     
     
     UIImageView *canvasFloatrView = [[UIImageView alloc] initWithImage:image];
-    canvasFloatrView.frame = CGRectMake(0.0, 0.0, floatrWidth, floatrWidth);
+    canvasFloatrView.frame = CGRectMake(0.0, 0.0, floatrInitialWidth, floatrInitialWidth);
     canvasFloatrView.center = location;
     canvasFloatrView.translatesAutoresizingMaskIntoConstraints = YES;
     canvasFloatrView.backgroundColor = [UIColor clearColor];
@@ -146,6 +147,11 @@
     
     [self.canvasView addSubview:canvasFloatrView];
     
+//    [UIView animateWithDuration:0.5 animations:^{canvasFloatrView.frame = CGRectMake(canvasFloatrView.frame.origin.x, canvasFloatrView.frame.origin.y, floatrFinalWidth, floatrFinalWidth);}];
+    
+    UIViewPropertyAnimator *expandSizeAnimation = [[UIViewPropertyAnimator alloc]initWithDuration:0.5 dampingRatio:.5 animations:^{canvasFloatrView.frame = CGRectMake(canvasFloatrView.frame.origin.x, canvasFloatrView.frame.origin.y, floatrFinalWidth, floatrFinalWidth);}];
+    [expandSizeAnimation startAnimation];
+
     
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(canvasPanGestureRecognized:)];
     [canvasFloatrView addGestureRecognizer:panRecognizer];
