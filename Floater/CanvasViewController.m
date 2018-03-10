@@ -119,9 +119,7 @@
         case UIGestureRecognizerStateEnded:
             
             if (CGRectContainsPoint(self.canvasView.frame, floatrLocation)) {
-//                NSLog(@"Hey, I'm in the canvas!");
                 // Create corresponding floatrView and add it to the canvasView
-//                [self setupFloatrInCanvasViewWithLocation:floatrLocation andImage:[UIImage self.selectedImages[0]]];
                 [self setupFloatrInCanvasViewWithLocation:floatrLocationInCanvas andImage:imageToPass];
                 [recognizer.view removeFromSuperview];
                 // Option: Make pallette floatr disappear from main view (means floatr can only be used once)
@@ -139,7 +137,8 @@
     
     
     UIImageView *canvasFloatrView = [[UIImageView alloc] initWithImage:image];
-    canvasFloatrView.frame = CGRectMake(location.x, location.y, floatrWidth, floatrWidth);
+    canvasFloatrView.frame = CGRectMake(0.0, 0.0, floatrWidth, floatrWidth);
+    canvasFloatrView.center = location;
     canvasFloatrView.translatesAutoresizingMaskIntoConstraints = YES;
     canvasFloatrView.backgroundColor = [UIColor clearColor];
     canvasFloatrView.layer.cornerRadius = 10.0;
