@@ -134,6 +134,7 @@
                     <navigationItem key="navigationItem" title="Floater" id="yqM-F8-EjW">
                         <barButtonItem key="rightBarButtonItem" title="Canvas" id="Zn8-22-pmY">
                             <connections>
+                                <action selector="SaveImage:" destination="7Dh-XF-AuN" id="6ig-Vj-umy"/>
                                 <segue destination="XES-lU-OaM" kind="show" identifier="showCanvas" id="1rw-Am-byV"/>
                             </connections>
                         </barButtonItem>
@@ -143,10 +144,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RFE-7d-Yn8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7Dh-XF-AuN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1285.5999999999999" y="151.57421289355324"/>
         </scene>
-        <!--Canvas View Controller-->
+        <!--Canvas-->
         <scene sceneID="hYI-IW-8l6">
             <objects>
                 <viewController id="XES-lU-OaM" customClass="CanvasViewController" sceneMemberID="viewController">
@@ -156,6 +158,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Ke6-nQ-bS2"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Canvas" id="Ven-pR-4Uv" userLabel="Canvas">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="UnJ-Dg-tV7">
+                            <connections>
+                                <action selector="SaveImage:" destination="XES-lU-OaM" id="Y8I-L4-BGX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXE-8O-n2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
