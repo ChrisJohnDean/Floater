@@ -57,7 +57,7 @@
 -(void)setupCanvasView {
     self.canvasView = [[UIView alloc] initWithFrame:CGRectZero];
     self.canvasView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.canvasView.backgroundColor = [UIColor greenColor];
+    self.canvasView.backgroundColor = [UIColor clearColor];
     self.canvasView.layer.cornerRadius = 10.0;
     [self.view addSubview:self.canvasView];
     
@@ -141,7 +141,7 @@
     NSLog(@"I'm trying to save this image!");
     [self requestAuthorizationWithRedirectionToSettings];
     UIView* captureView = self.canvasView;
-    UIGraphicsBeginImageContextWithOptions(captureView.bounds.size, YES , 0.0f);
+    UIGraphicsBeginImageContextWithOptions(captureView.bounds.size, NO, 0.0f);
     [captureView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
