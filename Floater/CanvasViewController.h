@@ -12,5 +12,6 @@
 
 @interface CanvasViewController : UIViewController
 
+@property (nonatomic) NSMutableArray *selectedImages;
 
 @end

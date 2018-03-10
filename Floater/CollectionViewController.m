@@ -67,12 +67,12 @@
 }
 
 //// Pass array of selected images to canvasVC
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if([[segue identifier] isEqualToString:@"showCanvas"]) {
-//        CanvasViewController *destination = (CanvasViewController*)[segue destinationViewController];
-//        destination.selectedImages = self.selectedImages;
-//    }
-//}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([[segue identifier] isEqualToString:@"showCanvas"]) {
+        CanvasViewController *destination = (CanvasViewController*)[segue destinationViewController];
+        destination.selectedImages = self.selectedImages;
+    }
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.arrayOfFloaters.count;

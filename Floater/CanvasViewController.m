@@ -11,7 +11,7 @@
 
 @interface CanvasViewController () <UIGestureRecognizerDelegate>
 
-@property (nonatomic) NSMutableArray *selectedImages;
+
 @property (nonatomic, strong) UIView *canvasView;
 
 @property (nonatomic, strong) NSArray<FloaterObject *> *floatrsArray;
