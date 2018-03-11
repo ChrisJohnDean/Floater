@@ -9,16 +9,20 @@
 import UIKit
 import RealmSwift
 
+//private extension Selector {
+//    static let keyboardDidShow = #selector(SearchViewController.keyboardDidShow(notification:))
+//}
+
 class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var floaterRequest: UIButton!
     
     @IBOutlet weak var blogNameTextField: UITextField!
     @IBOutlet weak var floaterTypePicker: UIPickerView!
     
-    
     var pickerData = [String]()
-    
     var pickerChoice = String()
+    
+    var keyboardHeightFinal: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +45,20 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         floaterRequest.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         floaterRequest.layer.shadowRadius = 5
         floaterRequest.layer.shadowOpacity = 1.0
+        
+        
     }
-    //self.view.backgroundColor = [UIColor blueColor];
-    //    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,10 +66,62 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         floaterTypePicker.selectRow(0, inComponent: 0, animated: true)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if let keyboardHeight = self.keyboardHeightFinal {
+            UIView.animate(withDuration: 2, animations: {
+                self.view.frame = self.view.frame.offsetBy(dx: 0, dy:(keyboardHeight/2))
+            })
+        }
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            keyboardHeightFinal = keyboardHeight
+
+            UIView.animate(withDuration: 2, animations: {
+                self.view.frame = self.view.frame.offsetBy(dx: 0, dy:(-keyboardHeight/2))
+            })
+        }
+
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+                
+            UIView.animate(withDuration: 2, animations: {
+                self.view.frame = self.view.frame.offsetBy(dx: 0, dy:(keyboardHeight/2))
+            })
+        }
+    }
+    
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+        self.blogNameTextField.resignFirstResponder()
     }
+    
+//    (void)setupView {
+//    // Animated background color
+//    self.view.backgroundColor = [UIColor blueColor];
+//    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+//
+//    //    self.view.backgroundColor = [UIColor clearColor];
+//
+//    }
+    
+//    func setupView() {
+//        self.view.backgroundColor = UIColor.blue
+//        UIView.animate(withDuration: 4, delay: 0.0, options: repeat | autoreverse | beginFromCurrentState | allowUserInteraction | animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+//    }
+//
     
    @objc @IBAction func makeApiCall(_ sender: Any) {
     
@@ -116,11 +180,3 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 }
 
 
-class Dog: Object {
-    // Optional String, Date, Data properties built in
-    @objc dynamic var name: String? // set to nil automatically
-    // RealmOptional properties used to make other types optional.
-    // Should always be declared with `let`.
-    // No @objc dynamic
-    let age = RealmOptional<Int>()
-}
