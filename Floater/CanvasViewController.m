@@ -8,6 +8,8 @@
 
 #import "CanvasViewController.h"
 #import "FloaterObject.h"
+#import "Floater-Swift.h"
+@import Realm;
 
 @interface CanvasViewController () <UIGestureRecognizerDelegate>
 
@@ -40,9 +42,6 @@
 - (IBAction)SaveImage:(id)sender {
     [self saveCanvasImage];
 }
-
-
-
 
 
 -(void)setupView {

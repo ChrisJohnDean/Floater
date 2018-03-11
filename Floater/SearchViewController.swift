@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var floaterRequest: UIButton!
@@ -112,4 +113,14 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     */
 
+}
+
+
+class Dog: Object {
+    // Optional String, Date, Data properties built in
+    @objc dynamic var name: String? // set to nil automatically
+    // RealmOptional properties used to make other types optional.
+    // Should always be declared with `let`.
+    // No @objc dynamic
+    let age = RealmOptional<Int>()
 }

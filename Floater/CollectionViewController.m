@@ -12,6 +12,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ImageManager.h"
 #import "CanvasViewController.h"
+@import Realm;
+
 
 @interface CollectionViewController() <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -19,9 +21,10 @@
 @property (nonatomic) NSArray *arrayOfFloaters;
 @property (nonatomic) NSCache *floaterCache;
 @property (nonatomic) NSMutableArray *selectedRows;
-@property (nonatomic) NSMutableArray *selectedFloaters;
 @property (nonatomic) NSMutableArray *selectedImages;
 @property (nonatomic) ImageManager *imageManager;
+@property (nonatomic) NSMutableArray *arrayOfData;
+
 
 @end
 
@@ -33,9 +36,9 @@
     self.imageManager = [[ImageManager alloc] init];
     
     self.arrayOfFloaters = [[NSArray alloc] init];
-    self.selectedFloaters = [[NSMutableArray alloc] init];
     self.selectedRows = [[NSMutableArray alloc] init];
     self.selectedImages = [[NSMutableArray alloc] init];
+    self.arrayOfData = [[NSMutableArray alloc] init];
     
     NetworkManager *networkManager = [[NetworkManager alloc] init];
     networkManager.delegate = self;
@@ -44,6 +47,27 @@
     
 }
 
+- (void)populatePaletteInDB {
+    
+    for(NSData *data in self.arrayOfData) {
+        ImagePalette *imagePalette = [self createPaletteWithData:data];
+        @try {
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            [realm transactionWithBlock:^{
+                [realm addObject:imagePalette];
+            }];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@", exception.reason);
+        }
+    }
+}
+
+- (ImagePalette*)createPaletteWithData:(NSData*)data {
+    ImagePalette *imagePalette = [[ImagePalette alloc] init];
+    imagePalette.data = data;
+    return imagePalette;
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -62,6 +86,7 @@
     self.arrayOfFloaters = arrayOfFloaters;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.myCollectionView reloadData];
+
     });
 
 }
@@ -71,6 +96,12 @@
     if([[segue identifier] isEqualToString:@"showCanvas"]) {
         CanvasViewController *destination = (CanvasViewController*)[segue destinationViewController];
         destination.selectedImages = self.selectedImages;
+        //[self populatePaletteInDB];
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm deleteAllObjects];
+        [realm commitWriteTransaction];
+        [self populatePaletteInDB];
     }
 }
 
@@ -129,27 +160,25 @@
     if([self.selectedRows containsObject:rowString]) {
         cell.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         NSInteger index = [self.selectedRows indexOfObject:rowString];
-        [self.selectedFloaters removeObjectAtIndex:index];
         [self.selectedRows removeObjectAtIndex:index];
+        [self.selectedImages removeObjectAtIndex:index];
+        [self.arrayOfData removeObjectAtIndex:index];
     } else {
         [self.selectedRows addObject:rowString];
         FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
         
-        [self.imageManager imageDownload:floater andCompletionHandler:^(UIImage *image) {
+        [self.imageManager imageDownload:floater andCompletionHandler:^(NSData *data, UIImage *image) {
+            
+            [self.arrayOfData addObject:data];
             [self.selectedImages addObject:image];
         }];
         
-        [self.selectedFloaters addObject:floater];
+        
         cell.layer.borderWidth = 3;
         cell.layer.borderColor = [[UIColor cyanColor] CGColor];
         cell.layer.cornerRadius = 6;
     }
-        
-    for(FloaterObject *floater in self.selectedFloaters) {
-        NSLog(@"%@", floater.iD);
-    }
-    NSLog(@"%lu", (unsigned long)self.selectedFloaters.count);
-    NSLog(@"%lu", (unsigned long)self.selectedImages.count);
+    
 }
 
 
