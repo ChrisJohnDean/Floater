@@ -9,9 +9,6 @@
 import UIKit
 import RealmSwift
 
-//private extension Selector {
-//    static let keyboardDidShow = #selector(SearchViewController.keyboardDidShow(notification:))
-//}
 
 class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var floaterRequest: UIButton!
@@ -107,22 +104,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         view.endEditing(true)
         self.blogNameTextField.resignFirstResponder()
     }
-    
-//    (void)setupView {
-//    // Animated background color
-//    self.view.backgroundColor = [UIColor blueColor];
-//    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
-//
-//    //    self.view.backgroundColor = [UIColor clearColor];
-//
-//    }
-    
-//    func setupView() {
-//        self.view.backgroundColor = UIColor.blue
-//        UIView.animate(withDuration: 4, delay: 0.0, options: repeat | autoreverse | beginFromCurrentState | allowUserInteraction | animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
-//    }
-//
-    
+
    @objc @IBAction func makeApiCall(_ sender: Any) {
     
     self.floaterRequest.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
