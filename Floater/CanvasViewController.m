@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSMutableArray<UIView *> *palletteFloatrViewsArray;
 @property (nonatomic, strong) NSMutableArray<UIView *> *canvasFloatrViewsArray;
 
+@property (nonatomic, strong) NSMutableSet *activeRecognizers;
+
 -(void)setupPaletteView;
 
 @end
@@ -31,6 +33,7 @@
     self.canvasFloatrViewsArray = [NSMutableArray new];
     self.floatrsArray = @[@1,@2,@3,@4];
     
+    self.activeRecognizers = [NSMutableSet set];
     
     [self setupView];
     [self setupCanvasView];
@@ -85,7 +88,7 @@
         floatrView.contentMode =UIViewContentModeScaleAspectFit;
         [self.view addSubview:floatrView];
         
-        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
+        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pallettePanGestureRecognized:)];
         [floatrView addGestureRecognizer:panRecognizer];
         
         [self.palletteFloatrViewsArray addObject:floatrView];
@@ -104,7 +107,7 @@
 }
 
 
--(void)panGestureRecognized: (UIPanGestureRecognizer*) recognizer {
+-(void)pallettePanGestureRecognized: (UIPanGestureRecognizer*) recognizer {
     //    NSLog(@"Being touched!");
     
     CGPoint floatrLocation = [recognizer locationInView:self.view];
@@ -144,6 +147,7 @@
     canvasFloatrView.backgroundColor = [UIColor clearColor];
     canvasFloatrView.layer.cornerRadius = 10.0;
     canvasFloatrView.userInteractionEnabled = YES;
+    canvasFloatrView.contentMode =UIViewContentModeScaleAspectFit;
     
     [self.canvasView addSubview:canvasFloatrView];
     
@@ -153,19 +157,59 @@
     [expandSizeAnimation startAnimation];
 
     
-    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(canvasPanGestureRecognized:)];
+    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleCanvasGestures:)];
     [canvasFloatrView addGestureRecognizer:panRecognizer];
+    
+//    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handleCanvasGestures:)];
+//    [canvasFloatrView addGestureRecognizer:pinchRecognizer];
+//    
+//    UIRotationGestureRecognizer *twoFingersRotateRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleCanvasGestures:)];
+//    [canvasFloatrView addGestureRecognizer:twoFingersRotateRecognizer];
+    
+    
     
     [self.canvasFloatrViewsArray addObject:canvasFloatrView];
 }
 
--(void)canvasPanGestureRecognized: (UIPanGestureRecognizer *) recognizer {
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+-(void)handleCanvasGestures: (UIGestureRecognizer *) recognizer {
     CGPoint floatrLocation = [recognizer locationInView:self.canvasView];
     recognizer.view.center = floatrLocation;
+    
+//    switch (recognizer.state) {
+//        case UIGestureRecognizerStateBegan:
+//            if (_activeRecognizers.count == 0)
+//                selectedImage.referenceTransform = selectedImage.transform;
+//            [_activeRecognizers addObject:recognizer];
+//            break;
+//
+//        case UIGestureRecognizerStateEnded:
+//            selectedImage.referenceTransform = [self applyRecognizer:recognizer toTransform:selectedImage.referenceTransform];
+//            [_activeRecognizers removeObject:recognizer];
+//            break;
+//
+//        case UIGestureRecognizerStateChanged: {
+//            CGAffineTransform transform = selectedImage.referenceTransform;
+//            for (UIGestureRecognizer *recognizer in _activeRecognizers)
+//                transform = [self applyRecognizer:recognizer toTransform:transform];
+//            selectedImage.transform = transform;
+//            break;
+//        }
+//
+//        default:
+//            break;
+//    }
+    
+    
+    
 }
 
 -(void)saveCanvasImage {
-    NSLog(@"I'm trying to save this image!");
+//    NSLog(@"I'm trying to save this image!");
     [self requestAuthorizationWithRedirectionToSettings];
     UIView* captureView = self.canvasView;
     UIGraphicsBeginImageContextWithOptions(captureView.bounds.size, NO, 0.0f);
