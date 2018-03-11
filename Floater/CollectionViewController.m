@@ -21,7 +21,6 @@
 @property (nonatomic) NSArray *arrayOfFloaters;
 @property (nonatomic) NSCache *floaterCache;
 @property (nonatomic) NSMutableArray *selectedRows;
-@property (nonatomic) NSMutableArray *selectedImages;
 @property (nonatomic) ImageManager *imageManager;
 @property (nonatomic) NSMutableArray *arrayOfData;
 
@@ -37,7 +36,6 @@
     
     self.arrayOfFloaters = [[NSArray alloc] init];
     self.selectedRows = [[NSMutableArray alloc] init];
-    self.selectedImages = [[NSMutableArray alloc] init];
     self.arrayOfData = [[NSMutableArray alloc] init];
     
     NetworkManager *networkManager = [[NetworkManager alloc] init];
@@ -94,9 +92,7 @@
 //// Pass array of selected images to canvasVC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"showCanvas"]) {
-        CanvasViewController *destination = (CanvasViewController*)[segue destinationViewController];
-        destination.selectedImages = self.selectedImages;
-        //[self populatePaletteInDB];
+
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         [realm deleteAllObjects];
@@ -159,18 +155,15 @@
     
     if([self.selectedRows containsObject:rowString]) {
         cell.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        
         NSInteger index = [self.selectedRows indexOfObject:rowString];
         [self.selectedRows removeObjectAtIndex:index];
-        [self.selectedImages removeObjectAtIndex:index];
         [self.arrayOfData removeObjectAtIndex:index];
     } else {
         [self.selectedRows addObject:rowString];
         FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
-        
         [self.imageManager imageDownload:floater andCompletionHandler:^(NSData *data, UIImage *image) {
-            
             [self.arrayOfData addObject:data];
-            [self.selectedImages addObject:image];
         }];
         
         

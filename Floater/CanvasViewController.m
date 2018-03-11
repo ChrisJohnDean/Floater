@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSMutableArray<UIView *> *palletteFloatrViewsArray;
 @property (nonatomic, strong) NSMutableArray<UIView *> *canvasFloatrViewsArray;
 
+@property (nonatomic) NSMutableArray *realmImageArray;
+
 @property (nonatomic, strong) NSMutableSet *activeRecognizers;
 
 -(void)setupPaletteView;
@@ -34,12 +36,20 @@
     self.palletteFloatrViewsArray = [NSMutableArray new];
     self.canvasFloatrViewsArray = [NSMutableArray new];
     self.floatrsArray = @[@1,@2,@3,@4];
+    self.realmImageArray = [[NSMutableArray alloc] init];
     
     self.activeRecognizers = [NSMutableSet set];
-    
+    [self basicFetchandCompletionHandler:^{
+        [self setupPaletteView];
+    }];
+     
     [self setupView];
     [self setupCanvasView];
-    [self setupPaletteView];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
 }
 
@@ -47,6 +57,25 @@
     [self saveCanvasImage];
 }
 
+- (void)basicFetchandCompletionHandler:(void(^)(void))completionHandler {
+    @try {
+        
+        RLMResults<ImagePalette*> *results = [ImagePalette allObjects];
+        for(ImagePalette *object in results) {
+            
+            UIImage *image = [UIImage imageWithData:object.data];
+            [self.realmImageArray addObject:image];
+            
+        }
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception.reason);
+    }
+    
+    completionHandler();
+    
+}
 
 -(void)setupView {
     // Animated background color
@@ -74,11 +103,13 @@
 
 -(void)setupPaletteView {
     CGFloat floatrOffset = 0;
-    for (int i=0; i<self.selectedImages.count; i++) {
+    
+    for (int i=0; i<self.realmImageArray.count; i++) {
 //        UIView *floatrView = [[UIView alloc] initWithFrame:CGRectZero];
         
         
-        UIImage *floatrImage = self.selectedImages[i];
+        //UIImage *floatrImage = self.selectedImages[i];
+        UIImage *floatrImage = self.realmImageArray[i];
         UIImageView *floatrView = [[UIImageView alloc]initWithImage:floatrImage];
         floatrView.translatesAutoresizingMaskIntoConstraints = NO;
         floatrView.backgroundColor = [UIColor clearColor];
@@ -93,7 +124,7 @@
         [self.palletteFloatrViewsArray addObject:floatrView];
         
         CGFloat floatrWidth = 75.0;
-        CGFloat floatrCount = self.selectedImages.count;
+        CGFloat floatrCount = self.realmImageArray.count;
         CGFloat viewWidth = self.view.frame.size.width;
         CGFloat paletteSpacing = viewWidth / (floatrCount+1);
         floatrOffset += paletteSpacing;
