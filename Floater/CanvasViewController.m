@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSMutableArray<UIView *> *palletteFloatrViewsArray;
 @property (nonatomic, strong) NSMutableArray<UIView *> *canvasFloatrViewsArray;
 
+@property (nonatomic, strong) NSMutableSet *activeRecognizers;
+
 -(void)setupPaletteView;
 
 @end
@@ -32,6 +34,8 @@
     self.palletteFloatrViewsArray = [NSMutableArray new];
     self.canvasFloatrViewsArray = [NSMutableArray new];
     self.floatrsArray = @[@1,@2,@3,@4];
+    
+    self.activeRecognizers = [NSMutableSet set];
     
     [self setupView];
     [self setupCanvasView];
@@ -46,10 +50,10 @@
 
 -(void)setupView {
     // Animated background color
-//    self.view.backgroundColor = [UIColor blueColor];
-//    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+    self.view.backgroundColor = [UIColor blueColor];
+    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
     
-    self.view.backgroundColor = [UIColor clearColor];
+//    self.view.backgroundColor = [UIColor clearColor];
     
 }
 
@@ -58,6 +62,8 @@
     self.canvasView.translatesAutoresizingMaskIntoConstraints = NO;
     self.canvasView.backgroundColor = [UIColor clearColor];
     self.canvasView.layer.cornerRadius = 10.0;
+    self.canvasView.layer.borderWidth = 5.0;
+    self.canvasView.layer.borderColor = [[UIColor cyanColor] CGColor];
     [self.view addSubview:self.canvasView];
     
     [self.canvasView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor].active = YES;
@@ -68,76 +74,141 @@
 
 -(void)setupPaletteView {
     CGFloat floatrOffset = 0;
-    for (int i=0; i<4; i++) {
-        UIView *floatrView = [[UIView alloc] initWithFrame:CGRectZero];
+    for (int i=0; i<self.selectedImages.count; i++) {
+//        UIView *floatrView = [[UIView alloc] initWithFrame:CGRectZero];
+        
+        
+        UIImage *floatrImage = self.selectedImages[i];
+        UIImageView *floatrView = [[UIImageView alloc]initWithImage:floatrImage];
         floatrView.translatesAutoresizingMaskIntoConstraints = NO;
-        floatrView.backgroundColor = [UIColor yellowColor];
+        floatrView.backgroundColor = [UIColor clearColor];
         floatrView.layer.cornerRadius = 10.0;
         floatrView.userInteractionEnabled = YES;
+        floatrView.contentMode =UIViewContentModeScaleAspectFit;
         [self.view addSubview:floatrView];
         
-        
-        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
+        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pallettePanGestureRecognized:)];
         [floatrView addGestureRecognizer:panRecognizer];
         
         [self.palletteFloatrViewsArray addObject:floatrView];
         
-        CGFloat floatrWidth = 55.0;
-        CGFloat floatrCount = 5;
+        CGFloat floatrWidth = 75.0;
+        CGFloat floatrCount = self.selectedImages.count;
         CGFloat viewWidth = self.view.frame.size.width;
-        CGFloat paletteSpacing = viewWidth / floatrCount;
+        CGFloat paletteSpacing = viewWidth / (floatrCount+1);
         floatrOffset += paletteSpacing;
         
         [floatrView.widthAnchor constraintEqualToConstant:floatrWidth].active = YES;
         [floatrView.heightAnchor constraintEqualToConstant:floatrWidth].active = YES;
         [floatrView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:floatrOffset].active = YES;
-        [floatrView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-40.0].active = YES;
+        [floatrView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-60.0].active = YES;
     }
 }
 
 
--(void)panGestureRecognized: (UIPanGestureRecognizer*) recognizer {
+-(void)pallettePanGestureRecognized: (UIPanGestureRecognizer*) recognizer {
     //    NSLog(@"Being touched!");
     
     CGPoint floatrLocation = [recognizer locationInView:self.view];
     recognizer.view.center = floatrLocation;
+    CGPoint floatrLocationInCanvas = [recognizer locationInView:self.canvasView];
+    UIImageView *testView = (UIImageView *)recognizer.view;
+    UIImage *imageToPass = testView.image;
+    
+    NSLog(@"%@", recognizer.view);
     
     switch (recognizer.state) {
         case UIGestureRecognizerStateEnded:
             
             if (CGRectContainsPoint(self.canvasView.frame, floatrLocation)) {
-                NSLog(@"Hey, I'm in the canvas!");
                 // Create corresponding floatrView and add it to the canvasView
-                [self setupFloatrInCanvasViewWithLocation:floatrLocation];
+                [self setupFloatrInCanvasViewWithLocation:floatrLocationInCanvas andImage:imageToPass];
                 [recognizer.view removeFromSuperview];
                 // Option: Make pallette floatr disappear from main view (means floatr can only be used once)
                 // or instantiate new floatrView at floatr origin (means multiple versions of same floatr can be used)
                 //                [UIView animateWithDuration:2.0 animations:^{recognizer.view.layer.opacity = 0.0;}];
             }
             break;
+        default:
+            break;
     }
 }
 
--(void)setupFloatrInCanvasViewWithLocation: (CGPoint) location {
-    CGFloat floatrWidth = 55.0;
+-(void)setupFloatrInCanvasViewWithLocation: (CGPoint) location andImage: (UIImage *) image {
+    CGFloat floatrInitialWidth = 75.0;
+    CGFloat floatrFinalWidth = 100.0;
     
-    UIView *canvasFloatrView = [[UIView alloc] initWithFrame:CGRectMake(location.x, location.y, floatrWidth, floatrWidth)];
+    
+    UIImageView *canvasFloatrView = [[UIImageView alloc] initWithImage:image];
+    canvasFloatrView.frame = CGRectMake(0.0, 0.0, floatrInitialWidth, floatrInitialWidth);
+    canvasFloatrView.center = location;
     canvasFloatrView.translatesAutoresizingMaskIntoConstraints = YES;
-    canvasFloatrView.backgroundColor = [UIColor cyanColor];
+    canvasFloatrView.backgroundColor = [UIColor clearColor];
     canvasFloatrView.layer.cornerRadius = 10.0;
     canvasFloatrView.userInteractionEnabled = YES;
+    canvasFloatrView.contentMode =UIViewContentModeScaleAspectFit;
     
     [self.canvasView addSubview:canvasFloatrView];
     
+//    [UIView animateWithDuration:0.5 animations:^{canvasFloatrView.frame = CGRectMake(canvasFloatrView.frame.origin.x, canvasFloatrView.frame.origin.y, floatrFinalWidth, floatrFinalWidth);}];
     
-    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
+    UIViewPropertyAnimator *expandSizeAnimation = [[UIViewPropertyAnimator alloc]initWithDuration:0.5 dampingRatio:.5 animations:^{canvasFloatrView.frame = CGRectMake(canvasFloatrView.frame.origin.x, canvasFloatrView.frame.origin.y, floatrFinalWidth, floatrFinalWidth);}];
+    [expandSizeAnimation startAnimation];
+
+    
+    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleCanvasGestures:)];
     [canvasFloatrView addGestureRecognizer:panRecognizer];
+    
+//    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handleCanvasGestures:)];
+//    [canvasFloatrView addGestureRecognizer:pinchRecognizer];
+//    
+//    UIRotationGestureRecognizer *twoFingersRotateRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleCanvasGestures:)];
+//    [canvasFloatrView addGestureRecognizer:twoFingersRotateRecognizer];
+    
+    
     
     [self.canvasFloatrViewsArray addObject:canvasFloatrView];
 }
 
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+-(void)handleCanvasGestures: (UIGestureRecognizer *) recognizer {
+    CGPoint floatrLocation = [recognizer locationInView:self.canvasView];
+    recognizer.view.center = floatrLocation;
+    
+//    switch (recognizer.state) {
+//        case UIGestureRecognizerStateBegan:
+//            if (_activeRecognizers.count == 0)
+//                selectedImage.referenceTransform = selectedImage.transform;
+//            [_activeRecognizers addObject:recognizer];
+//            break;
+//
+//        case UIGestureRecognizerStateEnded:
+//            selectedImage.referenceTransform = [self applyRecognizer:recognizer toTransform:selectedImage.referenceTransform];
+//            [_activeRecognizers removeObject:recognizer];
+//            break;
+//
+//        case UIGestureRecognizerStateChanged: {
+//            CGAffineTransform transform = selectedImage.referenceTransform;
+//            for (UIGestureRecognizer *recognizer in _activeRecognizers)
+//                transform = [self applyRecognizer:recognizer toTransform:transform];
+//            selectedImage.transform = transform;
+//            break;
+//        }
+//
+//        default:
+//            break;
+//    }
+    
+    
+    
+}
+
 -(void)saveCanvasImage {
-    NSLog(@"I'm trying to save this image!");
+//    NSLog(@"I'm trying to save this image!");
     [self requestAuthorizationWithRedirectionToSettings];
     UIView* captureView = self.canvasView;
     UIGraphicsBeginImageContextWithOptions(captureView.bounds.size, NO, 0.0f);
