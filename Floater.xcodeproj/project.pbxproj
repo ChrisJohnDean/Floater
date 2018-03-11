@@ -12,6 +12,7 @@
 		89254BCD20523A9600E3E856 /* FloaterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89254BCC20523A9600E3E856 /* FloaterCollectionViewCell.swift */; };
 		89254BD22053657700E3E856 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 89254BD12053657700E3E856 /* ImageManager.m */; };
 		89254BD4205492F200E3E856 /* ImagePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89254BD3205492F200E3E856 /* ImagePalette.swift */; };
+		89254BD62055E14800E3E856 /* GifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89254BD52055E14800E3E856 /* GifManager.swift */; };
 		89FEA6162050E0E700CFA75E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FEA6152050E0E700CFA75E /* AppDelegate.m */; };
 		89FEA61C2050E0E700CFA75E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89FEA61A2050E0E700CFA75E /* Main.storyboard */; };
 		89FEA61E2050E0E700CFA75E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89FEA61D2050E0E700CFA75E /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		89254BD02053657700E3E856 /* ImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
 		89254BD12053657700E3E856 /* ImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 		89254BD3205492F200E3E856 /* ImagePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePalette.swift; sourceTree = "<group>"; };
+		89254BD52055E14800E3E856 /* GifManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifManager.swift; sourceTree = "<group>"; };
 		89FEA6112050E0E700CFA75E /* Floater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Floater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FEA6142050E0E700CFA75E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		89FEA6152050E0E700CFA75E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				89254BD02053657700E3E856 /* ImageManager.h */,
 				89254BD12053657700E3E856 /* ImageManager.m */,
 				89254BD3205492F200E3E856 /* ImagePalette.swift */,
+				89254BD52055E14800E3E856 /* GifManager.swift */,
 			);
 			path = Floater;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				89254BCD20523A9600E3E856 /* FloaterCollectionViewCell.swift in Sources */,
 				AD27DEF4205211D30003734B /* Canvas.m in Sources */,
 				89FEA6482050ECB100CFA75E /* SearchViewController.swift in Sources */,
+				89254BD62055E14800E3E856 /* GifManager.swift in Sources */,
 				AD27DEF7205215FA0003734B /* Palette.m in Sources */,
 				AD27DEF120520E470003734B /* Collage Manager.m in Sources */,
 				89FEA64E20513AF900CFA75E /* FloaterObject.m in Sources */,
@@ -576,7 +580,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KRV5282U3Y;
+				DEVELOPMENT_TEAM = 95BWZVVTRH;
 				INFOPLIST_FILE = Floater/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -597,7 +601,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KRV5282U3Y;
+				DEVELOPMENT_TEAM = 95BWZVVTRH;
 				INFOPLIST_FILE = Floater/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

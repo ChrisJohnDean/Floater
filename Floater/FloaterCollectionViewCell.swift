@@ -13,6 +13,8 @@ class FloaterCollectionViewCell: UICollectionViewCell {
     @IBOutlet var floaterView: UIImageView!
     @objc var downloadTask = URLSessionDownloadTask()
     
+    
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         downloadTask.cancel()

@@ -13,6 +13,7 @@
 #import "ImageManager.h"
 #import "CanvasViewController.h"
 @import Realm;
+@import Gifu;
 
 
 @interface CollectionViewController() <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -31,9 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.imageManager = [[ImageManager alloc] init];
-    
     self.arrayOfFloaters = [[NSArray alloc] init];
     self.selectedRows = [[NSMutableArray alloc] init];
     self.arrayOfData = [[NSMutableArray alloc] init];
@@ -121,7 +120,6 @@
             floaterCell.floaterView.image = cachedImage;
         });
     } else {
-        
         NSURL *url = [NSURL URLWithString:urlString];
         floaterCell.downloadTask = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
@@ -139,6 +137,19 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 floaterCell.floaterView.image = image;
             });
+            
+//            if([self.floaterType  isEqualToString:(@"animated")]) {
+//                GifManager *gifManager = [[GifManager alloc] init];
+//
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [gifManager gifLoaderWithFrame:floaterCell.frame];
+//                    [gifManager gifAnimatorWithData:data];
+//                    floaterCell.floaterView = gifManager.imageView;
+//                });
+            
+            
+            
+            
             
         }];
         
