@@ -59,22 +59,17 @@
 
 - (void)basicFetchandCompletionHandler:(void(^)(void))completionHandler {
     @try {
-        
         RLMResults<ImagePalette*> *results = [ImagePalette allObjects];
         for(ImagePalette *object in results) {
             
             UIImage *image = [UIImage imageWithData:object.data];
             [self.realmImageArray addObject:image];
-            
         }
-        
     }
     @catch (NSException *exception) {
         NSLog(@"%@", exception.reason);
     }
-    
     completionHandler();
-    
 }
 
 -(void)setupView {
