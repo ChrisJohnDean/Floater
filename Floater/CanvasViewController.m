@@ -138,10 +138,10 @@
     CGPoint floatrLocation = [recognizer locationInView:self.view];
     recognizer.view.center = floatrLocation;
     CGPoint floatrLocationInCanvas = [recognizer locationInView:self.canvasView];
-    UIImageView *testView = (UIImageView *)recognizer.view;
-    UIImage *imageToPass = testView.image;
+    UIImageView *castedView = (UIImageView *)recognizer.view;
+    UIImage *imageToPass = castedView.image;
     
-    NSLog(@"%@", recognizer.view);
+//    NSLog(@"%@", recognizer.view);
     
     switch (recognizer.state) {
         case UIGestureRecognizerStateEnded:
@@ -184,15 +184,25 @@
     
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleCanvasGestures:)];
     [canvasFloatrView addGestureRecognizer:panRecognizer];
+    panRecognizer.delegate = self;
     
-//    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handleCanvasGestures:)];
-//    [canvasFloatrView addGestureRecognizer:pinchRecognizer];
-//    
-//    UIRotationGestureRecognizer *twoFingersRotateRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleCanvasGestures:)];
-//    [canvasFloatrView addGestureRecognizer:twoFingersRotateRecognizer];
+    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handleCanvasGestures:)];
+    [canvasFloatrView addGestureRecognizer:pinchRecognizer];
+    pinchRecognizer.delegate = self;
+    CGFloat scale = pinchRecognizer.scale;
+    
+    UIRotationGestureRecognizer *twoFingersRotateRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleCanvasGestures:)];
+    [canvasFloatrView addGestureRecognizer:twoFingersRotateRecognizer];
+    twoFingersRotateRecognizer.delegate = self;
+    CGFloat rotation = twoFingersRotateRecognizer.rotation;
     
     
-    
+//    CGAffineTransform referenceTransform = canvasFloatrView.transform;
+//    referenceTransform = CGAffineTransformScale(referenceTransform, scale, scale);
+//    referenceTransform = CGAffineTransformRotate(referenceTransform, rotation);
+//    canvasFloatrView.transform = referenceTransform;
+
+
     [self.canvasFloatrViewsArray addObject:canvasFloatrView];
 }
 
@@ -204,33 +214,58 @@
 -(void)handleCanvasGestures: (UIGestureRecognizer *) recognizer {
     CGPoint floatrLocation = [recognizer locationInView:self.canvasView];
     recognizer.view.center = floatrLocation;
+//    UIImageView *castedView = (UIImageView *)recognizer.view;
     
-//    switch (recognizer.state) {
-//        case UIGestureRecognizerStateBegan:
-//            if (_activeRecognizers.count == 0)
-//                selectedImage.referenceTransform = selectedImage.transform;
-//            [_activeRecognizers addObject:recognizer];
-//            break;
-//
-//        case UIGestureRecognizerStateEnded:
-//            selectedImage.referenceTransform = [self applyRecognizer:recognizer toTransform:selectedImage.referenceTransform];
-//            [_activeRecognizers removeObject:recognizer];
-//            break;
-//
-//        case UIGestureRecognizerStateChanged: {
-//            CGAffineTransform transform = selectedImage.referenceTransform;
-//            for (UIGestureRecognizer *recognizer in _activeRecognizers)
-//                transform = [self applyRecognizer:recognizer toTransform:transform];
-//            selectedImage.transform = transform;
-//            break;
-//        }
-//
-//        default:
-//            break;
-//    }
+//    CGAffineTransform transform = recognizer.view.transform
+    CGAffineTransform referenceTransform = recognizer.view.transform;
+//    referenceTransform = CGAffineTransformScale(referenceTransform, recognizer.scale, recognizer.scale);
+//    referenceTransform = CGAffineTransformRotate(referenceTransform, rotation);
+//    canvasFloatrView.transform = referenceTransform;
     
-    
-    
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            if (self.activeRecognizers.count == 0)
+                 referenceTransform = recognizer.view.transform;
+            [self.activeRecognizers addObject:recognizer];
+            break;
+
+        case UIGestureRecognizerStateChanged: {
+            CGAffineTransform transform = referenceTransform;
+            for (UIGestureRecognizer *recognizer in self.activeRecognizers)
+                transform = [self applyRecognizer:recognizer toTransform:transform];
+            recognizer.view.transform = transform;
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+            referenceTransform = [self applyRecognizer:recognizer toTransform:referenceTransform];
+            [self.activeRecognizers removeObject:recognizer];
+            break;
+        }
+
+        default:
+            break;
+    }
+
+}
+
+
+
+- (CGAffineTransform)applyRecognizer:(UIGestureRecognizer *)recognizer toTransform:(CGAffineTransform)transform
+{
+    if ([recognizer respondsToSelector:@selector(rotation)]) {
+        CGFloat rotation = [(UIRotationGestureRecognizer *)recognizer rotation];
+        [(UIRotationGestureRecognizer *)recognizer setRotation:0.0];
+        return CGAffineTransformRotate(transform, rotation);
+        
+    }
+    else if ([recognizer respondsToSelector:@selector(scale)]) {
+        CGFloat scale = [(UIPinchGestureRecognizer *)recognizer scale];
+        [(UIPinchGestureRecognizer *)recognizer setScale:1.0];
+        return CGAffineTransformScale(transform, scale, scale);
+        
+    }
+    else
+        return transform;
 }
 
 -(void)saveCanvasImage {
