@@ -15,6 +15,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var blogNameTextField: UITextField!
     @IBOutlet weak var floaterTypePicker: UIPickerView!
+    @IBOutlet weak var backgroundView: UIView!
     
     var pickerData = [String]()
     var pickerChoice = String()
@@ -44,6 +45,8 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         floaterRequest.layer.shadowOpacity = 1.0
         
         
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +64,8 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         floaterTypePicker.selectRow(0, inComponent: 0, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.setupBackgroundView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,6 +78,13 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func setupBackgroundView() {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.frame
+        gradient.colors = [UIColor.blue.cgColor, UIColor.red.cgColor]
+        self.backgroundView.layer.addSublayer(gradient)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
