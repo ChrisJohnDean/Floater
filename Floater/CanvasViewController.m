@@ -15,6 +15,7 @@
 
 
 @property (nonatomic, strong) UIView *canvasView;
+@property (nonatomic, strong) UIView *canvasViewFrame;
 
 @property (nonatomic, strong) NSArray<FloaterObject *> *floatrsArray;
 @property (nonatomic, strong) NSMutableArray<UIView *> *palletteFloatrViewsArray;
@@ -85,6 +86,9 @@
     gradient.frame = self.view.bounds;
     gradient.colors = @[(id)[UIColor redColor].CGColor, (id)[UIColor blueColor].CGColor];
     [self.view.layer insertSublayer:gradient atIndex:0];
+    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{gradient.colors = @[(id)[UIColor greenColor].CGColor, (id)[UIColor cyanColor].CGColor];} completion:nil];
+    
+    
     
 }
 
@@ -92,15 +96,31 @@
     self.canvasView = [[UIView alloc] initWithFrame:CGRectZero];
     self.canvasView.translatesAutoresizingMaskIntoConstraints = NO;
     self.canvasView.backgroundColor = [UIColor clearColor];
-    self.canvasView.layer.cornerRadius = 10.0;
-    self.canvasView.layer.borderWidth = 5.0;
-    self.canvasView.layer.borderColor = [[UIColor cyanColor] CGColor];
+    //    self.canvasView.layer.cornerRadius = 10.0;
+    //    self.canvasView.layer.borderWidth = 5.0;
+    //    self.canvasView.layer.borderColor = [[UIColor cyanColor] CGColor];
+    self.canvasView.clipsToBounds = YES;
     [self.view addSubview:self.canvasView];
     
     [self.canvasView.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor].active = YES;
     [self.canvasView.heightAnchor constraintEqualToAnchor:self.canvasView.widthAnchor].active = YES;
     [self.canvasView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor].active = YES;
     [self.canvasView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20.0].active = YES;
+    
+    self.canvasViewFrame = [[UIView alloc] initWithFrame:CGRectZero];
+    self.canvasViewFrame.translatesAutoresizingMaskIntoConstraints = NO;
+    self.canvasViewFrame.backgroundColor = [UIColor clearColor];
+    self.canvasViewFrame.layer.cornerRadius = 10.0;
+    self.canvasViewFrame.layer.borderWidth = 5.0;
+    self.canvasViewFrame.layer.borderColor = [[UIColor cyanColor] CGColor];
+    self.canvasViewFrame.userInteractionEnabled = NO;
+    [self.view addSubview:self.canvasViewFrame];
+    
+    [self.canvasViewFrame.widthAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.widthAnchor].active = YES;
+    [self.canvasViewFrame.heightAnchor constraintEqualToAnchor:self.canvasViewFrame.widthAnchor].active = YES;
+    [self.canvasViewFrame.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor].active = YES;
+    [self.canvasViewFrame.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:20.0].active = YES;
+   
 }
 
 -(void)setupPaletteView {
