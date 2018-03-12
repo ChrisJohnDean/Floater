@@ -75,19 +75,19 @@
 
 -(void)setupView {
     // Animated background color
-//    self.view.backgroundColor = [UIColor blueColor];
-//    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+    self.view.backgroundColor = [UIColor blueColor];
+    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
     
 
 
 
     // Gradient background
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = @[(id)[UIColor redColor].CGColor, (id)[UIColor blueColor].CGColor];
-    [self.view.layer insertSublayer:gradient atIndex:0];
-    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{gradient.colors = @[(id)[UIColor greenColor].CGColor, (id)[UIColor cyanColor].CGColor];} completion:nil];
-    
+//    CAGradientLayer *gradient = [CAGradientLayer layer];
+//    gradient.frame = self.view.bounds;
+//    gradient.colors = @[(id)[UIColor redColor].CGColor, (id)[UIColor blueColor].CGColor];
+//    [self.view.layer insertSublayer:gradient atIndex:0];
+//    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{gradient.colors = @[(id)[UIColor greenColor].CGColor, (id)[UIColor cyanColor].CGColor];} completion:nil];
+        
     
     
 }

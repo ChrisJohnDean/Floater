@@ -82,7 +82,7 @@
             </objects>
             <point key="canvasLocation" x="508" y="150.67466266866569"/>
         </scene>
-        <!--Floater-->
+        <!--Collect-->
         <scene sceneID="ZYg-Ar-M6E">
             <objects>
                 <viewController id="XgE-8e-eku" customClass="CollectionViewController" sceneMemberID="viewController">
@@ -147,7 +147,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uL2-fc-WAk"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Floater" id="yqM-F8-EjW">
+                    <navigationItem key="navigationItem" title="Collect" id="yqM-F8-EjW">
                         <barButtonItem key="rightBarButtonItem" title="Canvas" id="Zn8-22-pmY">
                             <connections>
                                 <action selector="SaveImage:" destination="7Dh-XF-AuN" id="6ig-Vj-umy"/>
@@ -156,6 +156,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backgroundView" destination="cVk-jX-b0D" id="UEI-1g-E0C"/>
                         <outlet property="myCollectionView" destination="5ge-Ze-PMz" id="NcZ-ut-VBv"/>
                     </connections>
                 </viewController>

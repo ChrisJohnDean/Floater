@@ -18,6 +18,8 @@
 
 @interface CollectionViewController() <UICollectionViewDataSource, UICollectionViewDelegate>
 
+
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (nonatomic) NSArray *arrayOfFloaters;
 @property (nonatomic) NSCache *floaterCache;
@@ -73,7 +75,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.myCollectionView.backgroundColor = [UIColor lightGrayColor];
+    self.myCollectionView.backgroundColor = [UIColor clearColor];
+    
+    [self setupBackgroundView];
     
 }
 
@@ -82,6 +86,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(void)setupBackgroundView {
+    // Animated background color
+    self.backgroundView.backgroundColor = [UIColor blueColor];
+    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+}
+
 
 // floaterDelegate protocol method
 - (void)passFloaterArray:(NSMutableArray *)arrayOfFloaters {
@@ -176,7 +188,7 @@
     
     // If cell has previously been selected
     if([self.selectedRows containsObject:rowString]) {
-        cell.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        cell.layer.borderColor = [[UIColor clearColor] CGColor];
         
         NSInteger index = [self.selectedRows indexOfObject:rowString];
         [self.selectedRows removeObjectAtIndex:index];

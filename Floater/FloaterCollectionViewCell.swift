@@ -19,6 +19,6 @@ class FloaterCollectionViewCell: UICollectionViewCell {
         downloadTask.cancel()
         floaterView.image = nil
         
-        self.layer.borderColor = UIColor.lightGray.cgColor
+        self.layer.borderColor = UIColor.clear.cgColor
     }
 }
