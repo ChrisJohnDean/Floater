@@ -14,11 +14,11 @@ class FloaterCollectionViewCell: UICollectionViewCell {
     @objc var downloadTask = URLSessionDownloadTask()
     
     
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         downloadTask.cancel()
         floaterView.image = nil
-       
+        
+        self.layer.borderColor = UIColor.lightGray.cgColor
     }
 }

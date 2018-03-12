@@ -66,6 +66,12 @@
     return imagePalette;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.myCollectionView reloadData];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.myCollectionView.backgroundColor = [UIColor lightGrayColor];
@@ -113,6 +119,12 @@
     NSDictionary *smallImageDict = floaterArray[floaterArray.count-2];
     NSString *urlString = smallImageDict[@"url"];
     
+    // Animates cells that were previously selected when you scroll back to said cells
+    NSString *rowString = [NSString stringWithFormat:@"%ld", indexPath.row];
+    if([self.selectedRows containsObject:rowString]) {
+        [self animateZoomforCell:floaterCell];
+    }
+    
     if([self.floaterCache objectForKey:urlString]) {
         
         UIImage *cachedImage = [self.floaterCache objectForKey:urlString];
@@ -156,8 +168,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    FloaterCollectionViewCell *cell = (FloaterCollectionViewCell*)[self.myCollectionView cellForItemAtIndexPath:indexPath];
+    //UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     NSString *rowString = [NSString stringWithFormat:@"%ld", indexPath.row];
     
     
@@ -176,9 +188,8 @@
             [self.arrayOfData addObject:data];
         }];
         
-        
 //        cell.layer.borderWidth = 3;
-        cell.layer.borderColor = [[UIColor cyanColor] CGColor];
+        //cell.layer.borderColor = [[UIColor cyanColor] CGColor];
         cell.layer.cornerRadius = 6;
         [self animateZoomforCell:cell];
     }
@@ -190,6 +201,7 @@
 
     [UIView animateWithDuration:0.3 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseOut animations:^{
         
+        zoomCell.layer.borderColor = [[UIColor cyanColor] CGColor];
         zoomCell.layer.borderWidth = 5;
         zoomCell.transform = CGAffineTransformMakeScale(1.2,1.2);
     } completion:^(BOOL finished){
