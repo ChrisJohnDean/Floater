@@ -58,7 +58,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.52108093090467344" green="0.28214567166899324" blue="0.99820941689999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <state key="normal" title="Grab Floaters">
+                                <state key="normal" title="Grab Floatrs">
                                     <color key="titleColor" red="0.80550047589999996" green="0.34126879411940814" blue="0.22299108670502621" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
