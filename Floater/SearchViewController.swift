@@ -37,8 +37,6 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         // UI for button
         floaterRequest.layer.cornerRadius = 5
-        floaterRequest.layer.borderWidth = 1
-        floaterRequest.layer.borderColor = UIColor.lightGray.cgColor
         floaterRequest.layer.shadowColor = UIColor.black.cgColor
         floaterRequest.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         floaterRequest.layer.shadowRadius = 5
@@ -79,6 +77,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+    
     
     func setupBackgroundView() {
         let gradient = CAGradientLayer()
