@@ -27,35 +27,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HmJ-nd-cNy">
-                                <rect key="frame" x="31" y="356" width="312" height="125"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="HmJ-nd-cNy">
+                                <rect key="frame" x="31" y="368" width="312" height="127"/>
                             </pickerView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="alpha-taxonomy" borderStyle="roundedRect" placeholder="Blog Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S4J-1f-2fL">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="alpha-taxonomy" borderStyle="roundedRect" placeholder="Blog Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S4J-1f-2fL">
                                 <rect key="frame" x="113" y="330" width="149" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.80550047589999996" green="0.56609097210876214" blue="0.77957906016650524" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Which Blog?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QW7-Ek-8Ij">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which Blog?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QW7-Ek-8Ij">
                                 <rect key="frame" x="139" y="297" width="96" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Floatr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vis-A0-3vA">
-                                <rect key="frame" x="73" y="91" width="229" height="129"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Floatr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vis-A0-3vA">
+                                <rect key="frame" x="73" y="91" width="229" height="100.5"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="71"/>
                                 <color key="textColor" red="0.80528521537780762" green="0.0089627280831336975" blue="0.10750751942396164" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfy-Q5-cXv">
-                                <rect key="frame" x="95" y="530" width="182" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfy-Q5-cXv">
+                                <rect key="frame" x="95" y="543" width="182" height="44"/>
                                 <color key="backgroundColor" red="0.52108093090467344" green="0.28214567166899324" blue="0.99820941689999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <state key="normal" title="Grab Floatrs">
@@ -68,6 +63,25 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.72735257221165406" blue="0.6318296857532788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Vis-A0-3vA" firstAttribute="top" secondItem="Ve5-RK-Hd3" secondAttribute="top" constant="27" id="49P-gZ-aAD"/>
+                            <constraint firstItem="HmJ-nd-cNy" firstAttribute="leading" secondItem="Ve5-RK-Hd3" secondAttribute="leading" constant="31" id="4lx-Cq-mI8"/>
+                            <constraint firstItem="Vis-A0-3vA" firstAttribute="leading" secondItem="Ve5-RK-Hd3" secondAttribute="leading" constant="73" id="9S4-x0-OKf"/>
+                            <constraint firstItem="cfy-Q5-cXv" firstAttribute="top" secondItem="HmJ-nd-cNy" secondAttribute="bottom" constant="48" id="B1v-86-Ptr"/>
+                            <constraint firstItem="S4J-1f-2fL" firstAttribute="top" secondItem="QW7-Ek-8Ij" secondAttribute="bottom" constant="8" id="FkX-fx-Sl8"/>
+                            <constraint firstItem="QW7-Ek-8Ij" firstAttribute="leading" secondItem="Ve5-RK-Hd3" secondAttribute="leading" constant="139" id="GYb-kW-aZx"/>
+                            <constraint firstItem="QW7-Ek-8Ij" firstAttribute="top" secondItem="Vis-A0-3vA" secondAttribute="bottom" constant="105.5" id="Gov-JG-iRh"/>
+                            <constraint firstItem="HmJ-nd-cNy" firstAttribute="top" secondItem="S4J-1f-2fL" secondAttribute="bottom" constant="8" id="LFJ-Y7-yhQ"/>
+                            <constraint firstItem="Ve5-RK-Hd3" firstAttribute="trailing" secondItem="Vis-A0-3vA" secondAttribute="trailing" constant="73" id="LYp-TD-d7c"/>
+                            <constraint firstItem="Ve5-RK-Hd3" firstAttribute="trailing" secondItem="HmJ-nd-cNy" secondAttribute="trailing" constant="32" id="POd-W6-zcG"/>
+                            <constraint firstItem="Ve5-RK-Hd3" firstAttribute="trailing" secondItem="QW7-Ek-8Ij" secondAttribute="trailing" constant="140" id="R8f-E4-FK2"/>
+                            <constraint firstItem="Ve5-RK-Hd3" firstAttribute="trailing" secondItem="S4J-1f-2fL" secondAttribute="trailing" constant="113" id="TXh-g2-Cak"/>
+                            <constraint firstItem="Ve5-RK-Hd3" firstAttribute="bottom" secondItem="cfy-Q5-cXv" secondAttribute="bottom" constant="80" id="Ycu-76-FdH"/>
+                            <constraint firstItem="S4J-1f-2fL" firstAttribute="leading" secondItem="Ve5-RK-Hd3" secondAttribute="leading" constant="113" id="jdD-4Y-HZm"/>
+                            <constraint firstItem="Ve5-RK-Hd3" firstAttribute="trailing" secondItem="cfy-Q5-cXv" secondAttribute="trailing" constant="98" id="sW8-f1-IQT"/>
+                            <constraint firstItem="S4J-1f-2fL" firstAttribute="top" secondItem="Vis-A0-3vA" secondAttribute="bottom" constant="138.5" id="u2d-bm-eAT"/>
+                            <constraint firstItem="cfy-Q5-cXv" firstAttribute="leading" secondItem="Ve5-RK-Hd3" secondAttribute="leading" constant="95" id="vJG-yn-d9y"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Ve5-RK-Hd3"/>
                     </view>
                     <navigationItem key="navigationItem" id="01C-ds-aw9"/>
