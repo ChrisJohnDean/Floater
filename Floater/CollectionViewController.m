@@ -146,11 +146,7 @@
 //                    [gifManager gifAnimatorWithData:data];
 //                    floaterCell.floaterView = gifManager.imageView;
 //                });
-            
-            
-            
-            
-            
+
         }];
         
         [floaterCell.downloadTask resume];
@@ -159,6 +155,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     NSString *rowString = [NSString stringWithFormat:@"%ld", indexPath.row];
@@ -170,6 +167,8 @@
         NSInteger index = [self.selectedRows indexOfObject:rowString];
         [self.selectedRows removeObjectAtIndex:index];
         [self.arrayOfData removeObjectAtIndex:index];
+        cell.transform = CGAffineTransformMakeScale(1,1);
+        [cell.layer removeAllAnimations];
     } else {
         [self.selectedRows addObject:rowString];
         FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
@@ -178,13 +177,33 @@
         }];
         
         
-        cell.layer.borderWidth = 3;
+//        cell.layer.borderWidth = 3;
         cell.layer.borderColor = [[UIColor cyanColor] CGColor];
         cell.layer.cornerRadius = 6;
+        [self animateZoomforCell:cell];
     }
     
 }
 
+-(void)animateZoomforCell:(UICollectionViewCell*)zoomCell
+{
+
+    [UIView animateWithDuration:0.3 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        zoomCell.layer.borderWidth = 5;
+        zoomCell.transform = CGAffineTransformMakeScale(1.2,1.2);
+    } completion:^(BOOL finished){
+    }];
+}
+
+-(void)setupView {
+    // Animated background color
+    self.view.backgroundColor = [UIColor blueColor];
+    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+    
+    //    self.view.backgroundColor = [UIColor clearColor];
+    
+}
 
 @end
 
