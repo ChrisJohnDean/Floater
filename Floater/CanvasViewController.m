@@ -74,10 +74,17 @@
 
 -(void)setupView {
     // Animated background color
-    self.view.backgroundColor = [UIColor blueColor];
-    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
+//    self.view.backgroundColor = [UIColor blueColor];
+//    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
     
-//    self.view.backgroundColor = [UIColor clearColor];
+
+
+
+    // Gradient background
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = @[(id)[UIColor redColor].CGColor, (id)[UIColor blueColor].CGColor];
+    [self.view.layer insertSublayer:gradient atIndex:0];
     
 }
 

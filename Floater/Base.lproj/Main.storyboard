@@ -82,6 +82,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" restorationIdentifier="BackgroundView" translatesAutoresizingMaskIntoConstraints="NO" id="cVk-jX-b0D">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5ge-Ze-PMz">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,7 +129,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5ge-Ze-PMz" firstAttribute="bottom" secondItem="uL2-fc-WAk" secondAttribute="bottom" id="1yO-Yz-qxu"/>
+                            <constraint firstItem="cVk-jX-b0D" firstAttribute="leading" secondItem="uL2-fc-WAk" secondAttribute="leading" id="3dI-Fw-lHP"/>
+                            <constraint firstItem="cVk-jX-b0D" firstAttribute="trailing" secondItem="uL2-fc-WAk" secondAttribute="trailing" id="BvW-r0-uQl"/>
                             <constraint firstItem="5ge-Ze-PMz" firstAttribute="top" secondItem="uL2-fc-WAk" secondAttribute="top" id="DOj-ne-qoD"/>
+                            <constraint firstItem="cVk-jX-b0D" firstAttribute="top" secondItem="YCv-GO-iHC" secondAttribute="top" id="NF5-xX-moR"/>
+                            <constraint firstItem="cVk-jX-b0D" firstAttribute="bottom" secondItem="uL2-fc-WAk" secondAttribute="bottom" id="PgP-Zu-a2b"/>
                             <constraint firstItem="5ge-Ze-PMz" firstAttribute="trailing" secondItem="uL2-fc-WAk" secondAttribute="trailing" id="cuV-lo-WcR"/>
                             <constraint firstItem="5ge-Ze-PMz" firstAttribute="leading" secondItem="uL2-fc-WAk" secondAttribute="leading" id="peA-LA-7xt"/>
                         </constraints>
