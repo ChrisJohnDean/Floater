@@ -41,7 +41,6 @@
     networkManager.delegate = self;
     [networkManager tumblrNetworkRequest:self.blogName withFloaterType:self.floaterType];
 
-    
 }
 
 - (void)populatePaletteInDB {
@@ -68,8 +67,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self.myCollectionView reloadData];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,7 +88,6 @@
     self.arrayOfFloaters = arrayOfFloaters;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.myCollectionView reloadData];
-
     });
 
 }
@@ -114,6 +112,8 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     FloaterCollectionViewCell *floaterCell = [self.myCollectionView dequeueReusableCellWithReuseIdentifier:@"floaterCell" forIndexPath:indexPath];
+    
+    // Parses url from JSON Tumblr data in the floater object and creates an NSString object
     FloaterObject *floater = self.arrayOfFloaters[indexPath.row];
     NSArray *floaterArray = floater.floaterArray;
     NSDictionary *smallImageDict = floaterArray[floaterArray.count-2];
@@ -125,21 +125,24 @@
         [self animateZoomforCell:floaterCell];
     }
     
+    // If image has already been cached, use cached image for current cell
     if([self.floaterCache objectForKey:urlString]) {
-        
         UIImage *cachedImage = [self.floaterCache objectForKey:urlString];
         dispatch_async(dispatch_get_main_queue(), ^{
             floaterCell.floaterView.image = cachedImage;
         });
+    // Else image has not been cached yet, so cache it in NSCache
     } else {
         NSURL *url = [NSURL URLWithString:urlString];
         floaterCell.downloadTask = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
+            // Catch any errors thrown by tumblr download task
             if(error) {
                 NSLog(@"error: %@", error.localizedDescription);
                 return;
             }
             
+            // Create image from tumblr API data
             NSData *data = [NSData dataWithContentsOfURL:location];
             UIImage *image = [UIImage imageWithData:data];
             
@@ -169,10 +172,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     FloaterCollectionViewCell *cell = (FloaterCollectionViewCell*)[self.myCollectionView cellForItemAtIndexPath:indexPath];
-    //UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     NSString *rowString = [NSString stringWithFormat:@"%ld", indexPath.row];
     
-    
+    // If cell has previously been selected
     if([self.selectedRows containsObject:rowString]) {
         cell.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         
@@ -181,16 +183,19 @@
         [self.arrayOfData removeObjectAtIndex:index];
         cell.transform = CGAffineTransformMakeScale(1,1);
         [cell.layer removeAllAnimations];
+        
+        // Else cell is selected for the first time
     } else {
+        // Add string copy of indexpath.row to self.selectedRows in order to track which cells have been selected
         [self.selectedRows addObject:rowString];
         FloaterObject *floater = [self.arrayOfFloaters objectAtIndex:indexPath.row];
+        
+        // Download image and data, and once download is complete, add data object to arrayOfData
         [self.imageManager imageDownload:floater andCompletionHandler:^(NSData *data, UIImage *image) {
             [self.arrayOfData addObject:data];
         }];
+
         
-//        cell.layer.borderWidth = 3;
-        //cell.layer.borderColor = [[UIColor cyanColor] CGColor];
-        cell.layer.cornerRadius = 6;
         [self animateZoomforCell:cell];
     }
     
@@ -198,23 +203,16 @@
 
 -(void)animateZoomforCell:(UICollectionViewCell*)zoomCell
 {
-
+    // Animate selected cells
     [UIView animateWithDuration:0.3 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseOut animations:^{
         
         zoomCell.layer.borderColor = [[UIColor cyanColor] CGColor];
+        zoomCell.layer.cornerRadius = 6;
         zoomCell.layer.borderWidth = 5;
         zoomCell.transform = CGAffineTransformMakeScale(1.2,1.2);
+        
     } completion:^(BOOL finished){
     }];
-}
-
--(void)setupView {
-    // Animated background color
-    self.view.backgroundColor = [UIColor blueColor];
-    [UIView animateWithDuration:4 delay:0.0f options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{self.view.backgroundColor = [UIColor redColor];} completion:nil];
-    
-    //    self.view.backgroundColor = [UIColor clearColor];
-    
 }
 
 @end

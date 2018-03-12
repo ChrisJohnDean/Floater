@@ -23,7 +23,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Connect data:
         self.floaterTypePicker.delegate = self
         self.floaterTypePicker.delegate = self
